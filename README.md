@@ -1,1 +1,1 @@
-# GDSC-Hackton-G10
+# GDSC Hackton Group 10
