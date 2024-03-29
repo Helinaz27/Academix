@@ -1,1 +1,1 @@
-# GDSC Hackton Group 10
+# Academix
