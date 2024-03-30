@@ -1,7 +1,57 @@
 import React from 'react';
+import { FiCalendar, FiBookOpen, FiUsers } from 'react-icons/fi';
+import 'tailwindcss/tailwind.css';
+import { CiPen } from "react-icons/ci";
 
 const ModeratorApplication = () => {
   return (
+    <div className="bg-white p-4 rounded-lg shadow-xl ">
+      <div className='text-center mb-6'>
+        <p className="text-4xl font-bold">Features <br/> </p>
+        <p className="text-gray-600 mt-2">
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tempora illo laborum tempora illo laborum</p>
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tempora illo laborum tempora illo laborum</p>
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tempora illo laborum</p>  
+        </p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-20">
+        <div className="bg-gray-200 p-4 rounded-lg shadow-md">
+          <div className="flex flex-col items-center mb-4">
+            <CiPen className="text-4xl mb-2" />
+            <h3 className="font-semibold text-lg mb-2">Custom Dashboard</h3>
+          </div>
+          <p className="text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tempora illo laborum ex cupiditate...</p>
+          <br />
+          <a href="#" className="text-gray-600 hover:text-blue-500 block text-center">View More</a>
+        </div>
+        <div className="bg-gray-200 p-4 rounded-lg shadow-md">
+          <div className="flex flex-col items-center mb-4">
+            <FiCalendar className="text-4xl mb-2" />
+            <h3 className="font-semibold text-lg mb-2">Class Schedule</h3>
+          </div>
+          <p className="text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tempora illo laborum ex cupiditate...</p>
+          <br />
+          <a href="#" className="text-gray-600 hover:text-blue-500 block text-center">View More</a>
+        </div>
+        <div className="bg-gray-200 p-4 rounded-lg shadow-md">
+          <div className="flex flex-col items-center mb-4">
+            <FiBookOpen className="text-4xl mb-2" />
+            <h3 className="font-semibold text-lg mb-2">Academic Calendar</h3>
+          </div>
+          <p className="text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tempora illo laborum ex cupiditate...</p>
+          <br />
+          <a href="#" className="text-gray-600 hover:text-blue-500 block text-center">View More</a>
+        </div>
+        <div className="bg-gray-200 p-4 rounded-lg shadow-md">
+          <div className="flex flex-col items-center mb-4">
+            <FiUsers className="text-4xl mb-2" />
+            <h3 className="font-semibold text-lg mb-2">Extracurriculars</h3>
+          </div>
+          <p className="text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tempora illo laborum ex cupiditate...</p>
+          <br />
+          <a href="#" className="text-gray-600 hover:text-blue-500 block text-center">View More</a>
+        </div>
+      </div>
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="flex flex-col lg:flex-row items-center justify-center w-full lg:w-3/4">
         <div className="w-full lg:w-1/3">
@@ -47,7 +97,7 @@ const ModeratorApplication = () => {
           />
         </div>
       </div>
-    </div>
+    </div></div>
   );
 };
 
