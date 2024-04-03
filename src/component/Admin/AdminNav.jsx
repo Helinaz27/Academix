@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Home from "./dashboard/Home";
 import {
   BellIcon,
   CalendarIcon,
@@ -17,6 +18,7 @@ import {
   NavList,
   Avatar,
 } from "@material-tailwind/react";
+import Dashboard from "./dashboard/Home";
 const AdminNav = () => {
   const [open, setOpen] = useState(true);
   const active =
@@ -131,6 +133,11 @@ const AdminNav = () => {
               </div>
             </div>
           </Navbar>
+          {/* used her for testing if u wan 
+          to use for coment the home then add 
+          u component for tes we will add 
+             sate for conrolling and chanfeing to pages !!! */}
+          <Home />
         </div>
       </div>
     </nav>
