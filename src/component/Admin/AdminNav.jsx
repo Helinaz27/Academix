@@ -1,15 +1,22 @@
 import { useState } from "react";
 import {
+  BellIcon,
   CalendarIcon,
   ChevronLeftIcon,
   UserIcon,
-  UsersIcon,
 } from "@iconicicons/react";
 import ArrowLeftEndOnRectangleIcon from "@heroicons/react/24/solid/ArrowLeftEndOnRectangleIcon";
 import CalandarDaysIcon from "@heroicons/react/24/solid/CalendarDaysIcon";
 import { MdSpaceDashboard } from "react-icons/md";
 import AcademicCapIcon from "@heroicons/react/24/outline/AcademicCapIcon";
 import UserGroupIcon from "@heroicons/react/24/outline/UserGroupIcon";
+import {
+  Navbar,
+  Typography,
+  IconButton,
+  NavList,
+  Avatar,
+} from "@material-tailwind/react";
 const AdminNav = () => {
   const [open, setOpen] = useState(true);
   const active =
@@ -35,7 +42,7 @@ const AdminNav = () => {
                 !open && "scale-0"
               }`}
             >
-              Academix
+              ACADEMIX
             </h1>
           </div>
           <ul className="pt-6">
@@ -91,7 +98,45 @@ const AdminNav = () => {
             </li>
           </ul>
         </div>
-        <div className="h-screen flex-1 p-7"></div>
+        <div className="h-screen flex-1 w-full">
+          <Navbar className="mx-auto w-full px-6 py-3">
+            <div className="flex items-center justify-between text-blue-gray-900">
+              <Typography
+                as="a"
+                href="#"
+                variant="h6"
+                className="mr-4 cursor-pointer py-1.5"
+              >
+                AASTU Admin
+              </Typography>
+              <IconButton
+                variant="text"
+                className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+              ></IconButton>
+              <div className="flex flex-col gap-6">
+                <div className="flex items-center gap-4">
+                  <IconButton>
+                    <BellIcon className="text-white" />
+                  </IconButton>
+                  <div>
+                    <Typography variant="h6">Abebe Bekele</Typography>
+                    <Typography
+                      variant="small"
+                      color="gray"
+                      className="font-normal text-right"
+                    >
+                      Admin
+                    </Typography>
+                  </div>
+                  <Avatar
+                    src="https://docs.material-tailwind.com/img/face-2.jpg"
+                    alt="avatar"
+                  />
+                </div>
+              </div>
+            </div>
+          </Navbar>
+        </div>
       </div>
     </nav>
   );
