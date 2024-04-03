@@ -101,12 +101,7 @@ const AdminNav = () => {
         <div className="h-screen flex-1 w-full">
           <Navbar className="mx-auto w-full px-6 py-3">
             <div className="flex items-center justify-between text-blue-gray-900">
-              <Typography
-                as="a"
-                href="#"
-                variant="h6"
-                className="mr-4 cursor-pointer py-1.5"
-              >
+              <Typography variant="h6" className="mr-4 cursor-pointer py-1.5">
                 AASTU Admin
               </Typography>
               <IconButton
