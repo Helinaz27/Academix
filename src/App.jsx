@@ -10,7 +10,7 @@ import Footer from "./component/General/Footer";
 function App() {
   return (
     <div className="">
-      {/* <main> <Navigation /> </main> */}
+      <main> <Navigation /> </main>
       <Routes>
         <Route index element={<Home />} />
         <Route path="/Home" element={<Home />} />
