@@ -24,7 +24,13 @@ function EventTable() {
             <td className="border border-gray-300 px-4 py-2">GDCS Club</td>
             <td className="border border-gray-300 px-4 py-2">Ahmed</td>
             <td className="border border-gray-300 px-4 py-2">ETS000/12</td>
-            <td className="border border-gray-300 px-4 py-2 text-green-500">Approved</td>
+            <td className="border border-gray-300 px-4 py-2 text-gray-500">panding..</td>
+          </tr>
+          <tr>
+            <td className="border border-gray-300 px-4 py-2">GDCS Club</td>
+            <td className="border border-gray-300 px-4 py-2">Ahmed</td>
+            <td className="border border-gray-300 px-4 py-2">ETS000/12</td>
+            <td className="border border-gray-300 px-4 py-2 text-red-900">Rejected</td>
           </tr>
           {/* Add more rows here */}
         </tbody>
