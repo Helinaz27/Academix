@@ -6,6 +6,7 @@ import TrendingPostcard from "../General-post/TrendingPostcard";
 const Gpost = () => {
   return (
     <>
+      <TrendingPostcard />
       <Posts />
     </>
   );
