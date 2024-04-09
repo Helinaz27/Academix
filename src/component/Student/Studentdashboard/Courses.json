@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "title": "Mathematics",
+      "code": "MATH101"
+    },
+    {
+      "id": 2,
+      "title": "Physics",
+      "code": "PHY101"
+    },
+    {
+      "id": 3,
+      "title": "Biology",
+      "code": "BIO101"
+    },
+    {
+      "id": 4,
+      "title": "Chemistry",
+      "code": "CHEM101"
+    }
+  ]
+  
