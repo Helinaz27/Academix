@@ -1,10 +1,7 @@
 import { useState } from "react";
-import Home from "./dashboard/Home";
-import User from "./users/User";
-
 import {
   BellIcon,
-  CalendarIcon,
+  HashtagIcon,
   ChevronLeftIcon,
   UserIcon,
 } from "@iconicicons/react";
@@ -17,21 +14,17 @@ import {
   Navbar,
   Typography,
   IconButton,
-  NavList,
   Avatar,
 } from "@material-tailwind/react";
-import Dashboard from "./dashboard/Home";
 import Department from "./Departmet/Department";
-import Staff from "./staff/Staff";
-import Cleande from "./AcadmicCliender/Cleande";
+import Staff from "./Staff/Staff";
+import Event from "./Event/Events";
+import Home from "./dashboard/Home";
+import User from "./users/Userlist";
+import General from "../General-post/Gpost";
+
 const AdminNav = () => {
-  const [open, setOpen] = useState();
-  const active =
-    "flex mt-64 rounded-md p-2 cursor-pointer bg-white hover:text-neutral-800 font-semibold leading-3  text-[#AFAFAF] text-sm items-center";
-
-  const incatve = "";
-
-  //
+  const [open, setOpen] = useState(true);
   const [page, setPage] = useState("home");
 
   const handlePage = (pageName) => {
@@ -47,13 +40,11 @@ const AdminNav = () => {
       return <Staff />;
     } else if (page === "department") {
       return <Department />;
-    } else if (page === "Acadmic") {
-      return <Cleande />;
-    }
-    // else if(page === 'event') {
-    //   return <Events/>;
-    // }
-    else {
+    } else if (page === "General") {
+      return <General />;
+    } else if (page === "Event") {
+      return <Event />;
+    } else {
       <h1>theres no page</h1>;
     }
   };
@@ -65,7 +56,7 @@ const AdminNav = () => {
       <div className="flex ">
         <div
           className={` ${
-            open ? "w-60" : "w-20 "
+            open ? "w-60 h-full" : "w-20 h-full"
           } bg-[#041643] h-screen p-5  pt-8 relative duration-300`}
         >
           <ChevronLeftIcon
@@ -76,7 +67,7 @@ const AdminNav = () => {
 
           <div className="flex gap-x-4 items-center place-content-center">
             <h1
-              className={`text-white origin-left font-extrabold text-xl duration-200 ${
+              className={`text-white origin-left font-extrabold text-xl duration-200 font-sans ${
                 !open && "scale-0"
               }`}
             >
@@ -84,50 +75,82 @@ const AdminNav = () => {
             </h1>
           </div>
           <ul className="pt-6">
-            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white">
+            <li
+              className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
+              onClick={() => handlePage("home")}
+            >
               <MdSpaceDashboard class="h-6 w-6 text-[#AFAFAF]" />
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
-                <button onClick={() => handlePage("home")}>Dashboard</button>
+              <span
+                className={`${
+                  !open && "hidden"
+                } origin-left duration-200 font-sans font-bold`}
+              >
+                Dashboard
               </span>
             </li>
-            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-white text-[#AFAFAF] text-sm items-center">
+            <li
+              className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
+              onClick={() => handlePage("department")}
+            >
               <AcademicCapIcon class="h-6 w-6 text-[#AFAFAF]" />
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
-                <button onClick={() => handlePage("department")}>
-                  {" "}
-                  Department
-                </button>
+              <span
+                className={`${
+                  !open && "hidden"
+                } origin-left duration-200 font-sans font-bold`}
+              >
+                Department
               </span>
             </li>
-            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-white text-[#AFAFAF] text-sm items-center">
+            <li
+              className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
+              onClick={() => handlePage("user")}
+            >
               <UserIcon class="h-6 w-6 text-[#AFAFAF]" />
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
-                <button onClick={() => handlePage("user")}> Users</button>
+              <span
+                className={`${
+                  !open && "hidden"
+                } origin-left duration-200 font-sans font-bold`}
+              >
+                Users
               </span>
             </li>
-            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-white text-[#AFAFAF] text-sm items-center">
+            <li
+              className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
+              onClick={() => handlePage("staff")}
+            >
               <UserGroupIcon class="h-6 w-6 text-[#AFAFAF]" />
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
-                <button onClick={() => handlePage("staff")}> Staffs</button>
+              <span
+                className={`${
+                  !open && "hidden"
+                } origin-left duration-200 font-sans font-bold`}
+              >
+                Staff
               </span>
             </li>{" "}
-            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-white text-[#AFAFAF] text-sm items-center">
-              <CalendarIcon class="h-6 w-6 text-[#AFAFAF]" />
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
-                <button onClick={() => handlePage("Acadmic")}>
-                  {" "}
-                  Academic Calandar
-                </button>
+            <li
+              className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
+              onClick={() => handlePage("General")}
+            >
+              <HashtagIcon class="h-6 w-6 text-[#AFAFAF]" />
+              <span
+                className={`${
+                  !open && "hidden"
+                } origin-left duration-200 font-sans font-bold`}
+              >
+                General Post
               </span>
             </li>
-            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-white text-[#AFAFAF] text-sm items-center">
+            <li
+              className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
+              onClick={() => handlePage("Event")}
+            >
               <CalandarDaysIcon class="h-6 w-6 text-[#AFAFAF]" />
               <span
                 className={`${
                   !open && "hidden"
-                } origin-left duration-200 justify-center ml-2`}
+                } origin-left duration-200 font-sans font-bold`}
               >
-                <button onClick={() => handlePage("event")}>Event</button>
+                Event
               </span>
             </li>
             <li className="flex absolute bottom-0 mb-5 rounded-md p-2 cursor-pointer hover:bg-white hover:text-neutral-800 font-semibold leading-3  text-[#AFAFAF] text-sm items-center">
@@ -135,7 +158,7 @@ const AdminNav = () => {
               <span
                 className={`${
                   !open && "hidden"
-                } origin-left duration-200 ml-2 `}
+                } origin-left duration-200 font-sans font-bold`}
               >
                 Logout
               </span>
