@@ -12,7 +12,7 @@ function App() {
     <div className="">
       <main></main>
       <Routes>
-        <Route index element={<Home />} />
+        <Route index element={<AdminNav />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
