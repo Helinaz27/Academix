@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import PostService from "./PostService.js";
 import TrendingPosts from "./TrendingPosts.jsx";
 import Sidebar from "./Sidebar.jsx";
-import Footer from "./component/General/Footer.js";
-import courseData from "./courses.json"; // Import the course data from a dummy JSON file
+import courseData from "./Courses.json"; // Import the course data from a dummy JSON file
 
 const StudentDashboard = () => {
   const [posts, setPosts] = useState([]);

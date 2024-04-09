@@ -6,21 +6,22 @@ import Login from "./pages/Home/Login";
 import Signup from "./pages/Home/Signup";
 import Navigation from "./component/Home/Navigation";
 import Footer from "./component/General/Footer";
+import Gpost from "./component/General-post/Gpost";
 
 function App() {
   return (
     <div className="">
       <main></main>
       <Routes>
-        <Route index element={<AdminNav />} />
+        <Route index element={<Gpost />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Admin" element={<AdminNav />} />
       </Routes>
-      <div>
+      {/* <footer className="">
         <Footer />
-      </div>
+      </footer> */}
     </div>
   );
 }

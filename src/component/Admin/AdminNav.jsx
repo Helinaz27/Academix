@@ -20,7 +20,7 @@ import Department from "./Departmet/Department";
 import Staff from "./Staff/Staff";
 import Event from "./Event/Events";
 import Home from "./dashboard/Home";
-import User from "./users/Userlist";
+import User from "./users/User";
 import General from "../General-post/Gpost";
 
 const AdminNav = () => {
