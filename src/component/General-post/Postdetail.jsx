@@ -62,7 +62,7 @@ function Postdetail({ open, handleOpen, isFavorite, handleIsFavorite }) {
             </IconButton>
           </div>
         </DialogHeader>
-        <DialogBody className="flex gap-1">
+        <DialogBody className="grid grid-cols-2 gap-">
           <Card className="w-full">
             <img
               alt="nature"
