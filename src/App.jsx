@@ -6,14 +6,15 @@ import Login from "./pages/Home/Login";
 import Signup from "./pages/Home/Signup";
 import Navigation from "./component/Home/Navigation";
 import Footer from "./component/General/Footer";
-import Gpost from "./component/General-post/Gpost";
+import User from "./component/Admin/users/User.jsx";
+import Studentdashboard from "./component/Student/Dashboard/Studentdashboard.jsx"
 
 function App() {
   return (
     <div className="">
       <main></main>
       <Routes>
-        <Route index element={<Gpost />} />
+        <Route index element={<Studentdashboard />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />

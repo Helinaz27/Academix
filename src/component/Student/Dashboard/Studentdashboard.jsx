@@ -3,6 +3,7 @@ import PostService from "./PostService.js";
 import TrendingPosts from "./TrendingPosts.jsx";
 import Sidebar from "./Sidebar.jsx";
 import courseData from "./Courses.json"; // Import the course data from a dummy JSON file
+import tw from 'tailwind-styled-components';
 
 const StudentDashboard = () => {
   const [posts, setPosts] = useState([]);
