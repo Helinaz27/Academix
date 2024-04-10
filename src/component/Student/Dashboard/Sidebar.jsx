@@ -25,7 +25,7 @@ const Sidebar = () => {
   useEffect(() => {
     const fetchAdminPosts = async () => {
       try {
-        const posts = await AdminPostService.getAdminPosts(); // Use the renamed service
+        const posts = await AdminPostService.getAdminPosts();
         const classEvents = [];
         const clubEvents = [];
 
@@ -50,27 +50,27 @@ const Sidebar = () => {
     <div className="w-100 h-full bg-white text-gray-800 p-6">
       {events.classEvents.length > 0 && (
         <div>
-          <EventTitle>Class Events</EventTitle>
+          <h3 className="text-xl font-semibold mb-2">Class Events</h3>
           {events.classEvents.map((event) => (
-            <EventContainer key={event.id}>
-              <EventDescription>
+            <div className="mb-6 bg-blue-900 rounded p-4" key={event.id}>
+              <p className="text-white">
                 <FiCalendar className="w-6 h-6 mr-2" />
                 {event.description}
-              </EventDescription>
-            </EventContainer>
+              </p>
+            </div>
           ))}
         </div>
       )}
       {events.clubEvents.length > 0 && (
         <div>
-          <EventTitle>Club Events</EventTitle>
+          <h3 className="text-xl font-semibold mb-2">Club Events</h3>
           {events.clubEvents.map((event) => (
-            <EventContainer key={event.id}>
-              <EventDescription>
+            <div className="mb-6 bg-blue-900 rounded p-4" key={event.id}>
+              <p className="text-white">
                 <FiCalendar className="w-6 h-6 mr-2" />
                 {event.description}
-              </EventDescription>
-            </EventContainer>
+              </p>
+            </div>
           ))}
         </div>
       )}
