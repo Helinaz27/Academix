@@ -7,7 +7,7 @@ import Signup from "./pages/Home/Signup";
 import Navigation from "./component/Home/Navigation";
 import Footer from "./component/General/Footer";
 import User from "./component/Admin/users/User.jsx";
-import Studentdashboard from "./component/Student/Dashboard/Studentdashboard.jsx"
+import Studentdashboard from "./component/Student/Dashboard/Studentdashboard.jsx";
 
 
 function App() {
