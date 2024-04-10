@@ -46,6 +46,7 @@ import {
   TabsHeader,
   TabsBody,
   Tab,
+  Navbar,
   TabPanel,
 } from "@material-tailwind/react";
 import {
@@ -86,24 +87,28 @@ function Postfilter() {
     },
   ];
   return (
-    <Tabs value="dashboard" className="mt-2">
-      <TabsHeader>
-        {data.map(({ label, value, icon }) => (
-          <Tab key={value} value={value}>
-            <div className="flex items-center gap-0">
-              {React.createElement(icon, { className: "w-5 h-5" })}
-              {label}
-            </div>
-          </Tab>
-        ))}
-      </TabsHeader>
-      <TabsBody>
-        {data.map(({ value, desc }) => (
-          <TabPanel key={value} value={value}>
-            {desc}
-          </TabPanel>
-        ))}
-      </TabsBody>
+    <Tabs value="dashboard" className="mt-2 overflow-hidden">
+      <div className="-m-6 max-h-[768px] w-[calc(100%+48px)] overflow-scroll">
+        <Navbar className="sticky top-0 z-10 h-max max-w-full px-4 py-2 lg:px-8 lg:py-4">
+          <TabsHeader className="">
+            {data.map(({ label, value, icon }) => (
+              <Tab key={value} value={value}>
+                <div className="flex items-center gap-0">
+                  {React.createElement(icon, { className: "w-5 h-5" })}
+                  {label}
+                </div>
+              </Tab>
+            ))}
+          </TabsHeader>
+        </Navbar>
+        <TabsBody>
+          {data.map(({ value, desc }) => (
+            <TabPanel key={value} value={value}>
+              {desc}
+            </TabPanel>
+          ))}
+        </TabsBody>
+      </div>
     </Tabs>
   );
 }

@@ -7,7 +7,7 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import { UserIcon } from "@heroicons/react/24/outline";
-import { HeartIcon, BookmarkIcon } from "@heroicons/react/24/outline";
+import { HeartIcon, ArrowDownCircleIcon } from "@heroicons/react/24/outline";
 import ChatBubbleOvalLeftEllipsisIcon from "@heroicons/react/24/outline/ChatBubbleOvalLeftEllipsisIcon";
 import ExclamationCircleIcon from "@heroicons/react/24/outline/ExclamationCircleIcon";
 import Postdetail from "./Postdetail";
@@ -64,7 +64,7 @@ function Posts() {
                 variant="text"
                 className="rounded-full"
               >
-                <BookmarkIcon class="h-6 w-6 float-right" />
+                <ArrowDownCircleIcon class="h-6 w-6 float-right" />
               </IconButton>
             </div>
             <div className="flex mt-5">
@@ -184,7 +184,7 @@ function Posts() {
                 variant="text"
                 className="rounded-full"
               >
-                <BookmarkIcon class="h-6 w-6 float-right" />
+                <ArrowDownCircleIcon class="h-6 w-6 float-right" />
               </IconButton>
             </div>
             <div className="flex mt-5">

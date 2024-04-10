@@ -33,7 +33,7 @@ function Reportpopup({ report, handleReport }) {
             close
           </Button>
           <Button variant="gradient" onClick={handleReport}>
-            Report
+            proced
           </Button>
         </DialogFooter>
       </Dialog>
