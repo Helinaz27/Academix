@@ -1,4 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+import {
+ 
+  FaCircle,
+  FaCircleCheck,
+} from "react-icons/fa6";
 
 // Function to calculate the percentage
 const calculatePercentage = (count, total) => {
@@ -41,7 +48,32 @@ const PercentageText = ({ percentage, position }) => {
 };
 
 // Main component to display the progress circle
-const ProgressCircle = ({ femaleCount, maleCount, femaleColor, maleColor }) => {
+const ProgressCircle = () => {
+ const [femaleCount, setFemaleCount] = useState(0);
+ const [maleCount, setMaleCount] = useState(0);
+
+ useEffect(() => {
+   const fetchData = async () => {
+     try {
+       const response = await axios.get('http://54.237.124.13:8000/user/counts/', {
+         headers: {
+           Authorization: 'Token fb8d756a0b5814f5620ec679633d2baa0882e483',
+         },
+       });
+
+       const data = response.data.data; // Assuming the data is nested under 'data' key
+
+       // Set female and male counts
+       setFemaleCount(data.female || 13);
+       setMaleCount(data.male || 12);
+     } catch (error) {
+       console.error('Error fetching data:', error);
+     }
+   };
+
+   fetchData();
+ }, []);
+
  // Calculate the total count
  const totalCount = femaleCount + maleCount;
 
@@ -50,17 +82,33 @@ const ProgressCircle = ({ femaleCount, maleCount, femaleColor, maleColor }) => {
  const malePct = calculatePercentage(maleCount, totalCount);
 
  return (
-    <div>
+  <>
+  <div>
       <svg width={200} height={200}>
         <g transform={`rotate(-90 100 100)`}>
-          <CircleProgress color={femaleColor} />
-          {/* <CircleProgress color={femaleColor} percentage={femalePct} /> */}
-          <CircleProgress color={maleColor} percentage={malePct} />
+          <CircleProgress color="blue" percentage={femalePct} />
+          <CircleProgress color="red" percentage={malePct} />
         </g>
         <PercentageText percentage={femalePct} position={{ x: '90%', anchor: 'end' }} />
         <PercentageText percentage={malePct} position={{ x: '10%', anchor: 'start' }} />
       </svg>
+      
     </div>
+    <div className="flex gap-5">
+            <FaCircle className="fill-green-900 mb-1" />
+
+            <h3 className=" flex ">males</h3>
+            <p>{maleCount}</p>
+          </div>
+          <div className="flex gap-4">
+            <FaCircle className="fill-light-blue-900 mb-1" />
+
+            <h3>females</h3>
+            <p>{femaleCount}</p>
+          </div>
+        
+  </>
+    
  );
 };
 
