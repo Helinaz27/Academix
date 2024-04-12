@@ -8,6 +8,7 @@ import Navigation from "./component/Home/Navigation";
 import Footer from "./component/General/Footer";
 import User from "./component/Admin/users/User.jsx";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Studentdashboard from "./component/Student/Dashboard/Studentdashboard.jsx";
 
 =======
@@ -17,6 +18,10 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "./Features/auth/authSlice.js";
 import Redirector from "./component/General/Redirector.jsx";
 >>>>>>> Abel
+=======
+import Studentdashboard from "./component/Student/Dashboard/Studentdashboard.jsx";
+import StudentNav from "./component/Student/StudentNav.jsx";
+>>>>>>> 06e312e43af3e6afac7b04263f5294469a6ea77b
 
 function App() {
   const user = useSelector(selectCurrentUser);
@@ -29,14 +34,19 @@ function App() {
       <main></main>
       <Routes>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
-        <Route index element={<Studentdashboard />} />
 =======
+>>>>>>> 06e312e43af3e6afac7b04263f5294469a6ea77b
+        <Route index element={<Studentdashboard />} />
         <Route index element={<Signup />} />
+<<<<<<< HEAD
 >>>>>>> Stashed changes
 =======
         <Route index element={<Home />} />
 >>>>>>> Abel
+=======
+>>>>>>> 06e312e43af3e6afac7b04263f5294469a6ea77b
         <Route path="/Home" element={<Home />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />

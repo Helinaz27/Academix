@@ -4,6 +4,7 @@ import TrendingPosts from "./TrendingPosts.jsx";
 import Sidebar from "./Sidebar.jsx";
 import courseData from "./Courses.json"; // Import the course data from a dummy JSON file
 import tw from 'tailwind-styled-components';
+import StudentNav from "../StudentNav"
 
 const StudentDashboard = () => {
   const [posts, setPosts] = useState([]);
@@ -32,6 +33,8 @@ const StudentDashboard = () => {
       </div>
       <div className="flex">
         <div className="flex-1 m-5 md-5">
+                  <StudentNav/>
+
           <div className="bg-white p-4 rounded-lg shadow-md mb-4 w-auto">
             <p className="text-xl font-bold">Hello</p>
             <p className="text-gray-600">Welcome to your dashboard</p>
