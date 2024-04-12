@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../Features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+
 import {
   BellIcon,
   HashtagIcon,
@@ -16,40 +20,14 @@ import {
   IconButton,
   Avatar,
 } from "@material-tailwind/react";
-import Department from "./Departmet/Department";
-import Staff from "./Staff/Staff";
-import Event from "./Event/Events";
-import Home from "./dashboard/Home";
-import User from "./users/User";
-import General from "../General-post/Gpost";
 
 const AdminNav = () => {
-  const [open, setOpen] = useState(true);
-  const [page, setPage] = useState("home");
-
-  const handlePage = (pageName) => {
-    setPage(pageName);
+  const dispatch = useDispatch();
+  const Navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logOut());
+    Navigate("/Login");
   };
-
-  const lacaso = () => {
-    if (page === "home") {
-      return <Home />;
-    } else if (page === "user") {
-      return <User />;
-    } else if (page === "staff") {
-      return <Staff />;
-    } else if (page === "department") {
-      return <Department />;
-    } else if (page === "General") {
-      return <General />;
-    } else if (page === "Event") {
-      return <Event />;
-    } else {
-      <h1>theres no page</h1>;
-    }
-  };
-  //
-  console.log(page);
 
   return (
     <nav>
@@ -75,10 +53,7 @@ const AdminNav = () => {
             </h1>
           </div>
           <ul className="pt-6">
-            <li
-              className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
-              onClick={() => handlePage("home")}
-            >
+            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white">
               <MdSpaceDashboard class="h-6 w-6 text-[#AFAFAF]" />
               <span
                 className={`${
@@ -88,10 +63,7 @@ const AdminNav = () => {
                 Dashboard
               </span>
             </li>
-            <li
-              className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
-              onClick={() => handlePage("department")}
-            >
+            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white">
               <AcademicCapIcon class="h-6 w-6 text-[#AFAFAF]" />
               <span
                 className={`${
@@ -101,10 +73,7 @@ const AdminNav = () => {
                 Department
               </span>
             </li>
-            <li
-              className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
-              onClick={() => handlePage("user")}
-            >
+            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white">
               <UserIcon class="h-6 w-6 text-[#AFAFAF]" />
               <span
                 className={`${
@@ -114,10 +83,7 @@ const AdminNav = () => {
                 Users
               </span>
             </li>
-            <li
-              className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
-              onClick={() => handlePage("staff")}
-            >
+            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white">
               <UserGroupIcon class="h-6 w-6 text-[#AFAFAF]" />
               <span
                 className={`${
@@ -127,10 +93,7 @@ const AdminNav = () => {
                 Staff
               </span>
             </li>{" "}
-            <li
-              className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
-              onClick={() => handlePage("General")}
-            >
+            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white">
               <HashtagIcon class="h-6 w-6 text-[#AFAFAF]" />
               <span
                 className={`${
@@ -140,10 +103,7 @@ const AdminNav = () => {
                 General Post
               </span>
             </li>
-            <li
-              className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
-              onClick={() => handlePage("Event")}
-            >
+            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white">
               <CalandarDaysIcon class="h-6 w-6 text-[#AFAFAF]" />
               <span
                 className={`${
@@ -159,6 +119,7 @@ const AdminNav = () => {
                 className={`${
                   !open && "hidden"
                 } origin-left duration-200 font-sans font-bold`}
+                onClick={() => handleLogout()}
               >
                 Logout
               </span>
@@ -198,13 +159,6 @@ const AdminNav = () => {
               </div>
             </div>
           </Navbar>
-          {/* used her for testing if u wan 
-          to use for coment the home then add 
-          u component for tes we will add 
-             sate for conrolling and chanfeing to pages !!! */}
-
-          {lacaso()}
-          {/* <Home/> */}
         </div>
       </div>
     </nav>

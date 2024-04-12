@@ -92,10 +92,14 @@ function Navigation() {
         <MobileNav open={openNav}>
           <div className="flex items-center gap-x-1">
             <Button fullWidth variant="text" size="sm" className="">
-              <span>Log In</span>
+              <NavLink to="Login">
+                <span>Log In</span>
+              </NavLink>
             </Button>
             <Button fullWidth variant="gradient" size="sm" className="">
-              <span>Sign in</span>
+              <span>
+                <NavLink to="Signup">Signup</NavLink>
+              </span>
             </Button>
           </div>
         </MobileNav>
