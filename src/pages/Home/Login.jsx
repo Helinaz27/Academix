@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import axios from "axios";
 import loginImg from "/images/logo.jpg";
 
@@ -6,6 +7,19 @@ export default function Login() {
   const [formData, setFormData] = useState({
     username: "",
     password: ""
+=======
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { setCredentials } from "../../Features/auth/authSlice";
+import loginImg from "/images/logo.jpg";
+import { useNavigate } from "react-router-dom";
+export default function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+>>>>>>> Abel
   });
 
   const handleInputChange = (e) => {
@@ -22,6 +36,7 @@ export default function Login() {
         formData,
         {
           headers: {
+<<<<<<< HEAD
             "Content-Type": "application/json"
           }
         }
@@ -29,6 +44,15 @@ export default function Login() {
 
       console.log("Login successful:", response.data);
 
+=======
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Staff Check", response?.data.is_staff);
+      dispatch(setCredentials({ ...response?.data }));
+      navigate("/Redirector");
+>>>>>>> Abel
       // Handle successful login, e.g., redirect to dashboard
     } catch (error) {
       console.error("Error logging in:", error.response.data);
@@ -36,7 +60,10 @@ export default function Login() {
       // Handle login error, e.g., display error message to user
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> Abel
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
@@ -65,7 +92,13 @@ export default function Login() {
             </p>
 
             <div className="flex flex-col pb-4">
+<<<<<<< HEAD
               <label className="text-gray-800 font-semibold mb-2">Username</label>
+=======
+              <label className="text-gray-800 font-semibold mb-2">
+                Username
+              </label>
+>>>>>>> Abel
               <input
                 className="border border-gray-300 p-3 rounded-md focus:outline-none focus:border-indigo-600 transition-all duration-300"
                 type="text"

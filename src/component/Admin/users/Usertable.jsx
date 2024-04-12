@@ -65,7 +65,7 @@
 // };
 
 // export default SearchHeaderforUsers;
-import React, { useState, useEffect } from "react";
+import React from "react";
 import StudentsData from "./StudentsData";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import AddUser from "./AddUser";
@@ -89,6 +89,7 @@ import {
   IconButton,
   Tooltip,
 } from "@material-tailwind/react";
+import Userinformation from "./Userinformation";
 
 const TABS = [
   {
@@ -119,42 +120,91 @@ const TABLE_HEAD = [
   "",
 ];
 
+const TABLE_ROWS = [
+  {
+    Id: 1,
+    name: "oooo Student",
+    email: "sample.student@aastudent.edu.et",
+    Department: "Electrical Department",
+    Subdepart: "Engneering",
+    ID_No: "ETS0000",
+    Role: "Student",
+    Gen: "M",
+    Phone_No: "+251956561111",
+  },
+  {
+    Id: 2,
+    name: " Demeke Kebede",
+    email: "kebede.demeke@aastudent.edu.et",
+    Department: "Electrical Department",
+    Subdepart: "Engneering",
+    ID_No: "ETS0000",
+    Role: "Student",
+    Gen: "F",
+    Phone_No: "+251956561111",
+  },
+  {
+    Id: 3,
+    name: "Sample Sample",
+    email: "sample.sample@aastudent.edu.et",
+    Department: "Electrical Department",
+    Subdepart: "Applied Science",
+    ID_No: "ETS0000",
+    Role: "Student",
+    Gen: "M",
+    Phone_No: "+251956561111",
+  },
+  {
+    Id: 4,
+    name: "Simple",
+    email: "sample.simple@aastudent.edu.et",
+    Department: "Electrical Department",
+    Subdepart: "Engneering",
+    ID_No: "ETS0000",
+    Role: "Student",
+    Gen: "F",
+    Phone_No: "+251956561111",
+  },
+  {
+    Id: 5,
+    name: "Kebede damtew",
+    email: "kebede.damtew@aastudent.edu.et",
+    Department: "Electrical Department",
+    Subdepart: "Engneering",
+    ID_No: "ETS0000",
+    Role: "Student",
+    Gen: "M",
+    Phone_No: "+251956561111",
+  },
+];
+
 const SearchHeaderforUsers = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [studentsData, setStudentsData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = React.useState("");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://54.237.124.13:8000/user/");
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response.json();
-        setStudentsData(data);
-        setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+  const toggleOpen = () => setOpen((cur) => !cur);
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const openDrawer = () => {};
-  const closeDrawer = () => {};
-  const handleOpen = () => {};
+  const filteredStudents = TABLE_ROWS.filter((student) =>
+    student.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const [open, setOpen] = React.useState(false);
+
+  const openDrawer = () => setOpen(true);
+  const closeDrawer = () => setOpen(false);
+
+  const [openadd, setOpenadd] = React.useState(false);
+  const handleOpen = () => setOpenadd((cur) => !cur);
 
   return (
     <>
-      <AddUser handleOpen={handleOpen} openadd={false} />
+      <AddUser handleOpen={handleOpen} openadd={openadd} />
+      <Userinformation
+        openDrawer={openDrawer}
+        open={open}
+        closeDrawer={closeDrawer}
+      />
       <Card className="flex h-full w-full mt-5">
         <CardHeader floated={false} shadow={false} className="rounded-none">
           <div className="mb-8 flex items-center justify-between gap-8">
@@ -169,8 +219,7 @@ const SearchHeaderforUsers = () => {
                 size="sm"
                 onClick={handleOpen}
               >
-                <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add
-                Student
+                <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add Student
               </Button>
             </div>
           </div>
@@ -215,130 +264,249 @@ const SearchHeaderforUsers = () => {
               </tr>
             </thead>
             <tbody>
-              {loading ? (
-                <tr>
-                  <td colSpan={TABLE_HEAD.length} className="text-center py-4">
-                    Loading...
-                  </td>
-                </tr>
-              ) : error ? (
-                <tr>
-                  <td colSpan={TABLE_HEAD.length} className="text-center py-4">
-                    Error: {error}
-                  </td>
-                </tr>
-              ) : (
-                studentsData
-                  .filter((student) =>
-                    student.name.toLowerCase().includes(searchTerm.toLowerCase())
-                  )
-                  .map(
-                    ({
-                      Role,
-                      name,
-                      email,
-                      Department,
-                      Subdepart,
-                      ID_No,
-                      Phone_No,
-                      Gen,
-                    }) => (
+              {TABLE_ROWS.map(
+                (
+                  {
+                    Role,
+                    name,
+                    email,
+                    Department,
+                    Subdepart,
+                    ID_No,
+                    Phone_No,
+                    Gen,
+                  },
+                  index
+                ) => {
+                  const isLast = index === TABLE_ROWS.length - 1;
+                  const classes = isLast
+                    ? "p-2"
+                    : "p-2 border-b border-blue-gray-50";
+
+                  return (
+                   <>
+                   {!searchTerm && (
                       <tr key={name}>
-                        <td className="p-2 border-b border-blue-gray-50">
-                          <div className="flex items-center gap-3">
-                            <UserIcon className=" size-8 text-black" />
-                            <div className="flex flex-col">
-                              <Typography
-                                variant="small"
-                                color="blue-gray"
-                                className="font-normal"
-                              >
-                                {name}
-                              </Typography>
-                              <Typography
-                                variant="small"
-                                color="blue-gray"
-                                className="font-normal opacity-70"
-                              >
-                                {email}
-                              </Typography>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="p-2 border-b border-blue-gray-50">
+                      <td className={classes}>
+                        <div className="flex items-center gap-3">
+                          <UserIcon className=" size-8 text-black" />
                           <div className="flex flex-col">
                             <Typography
                               variant="small"
                               color="blue-gray"
                               className="font-normal"
                             >
-                              {Department}
+                              {name}
                             </Typography>
                             <Typography
                               variant="small"
                               color="blue-gray"
                               className="font-normal opacity-70"
                             >
-                              {Subdepart}
+                              {email}
                             </Typography>
                           </div>
-                        </td>
-                        <td className="p-2 border-b border-blue-gray-50">
+                        </div>
+                      </td>
+                      <td className={classes}>
+                        <div className="flex flex-col">
                           <Typography
                             variant="small"
                             color="blue-gray"
                             className="font-normal"
                           >
-                            {ID_No}
+                            {Department}
                           </Typography>
-                        </td>
-                        <td className="p-2 border-b border-blue-gray-50">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal opacity-70"
+                          >
+                            {Subdepart}
+                          </Typography>
+                        </div>
+                      </td>
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {ID_No}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {Gen}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {Role}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {Phone_No}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Tooltip content="View">
+                          <IconButton variant="text" onClick={openDrawer}>
+                            <EyeIcon className="h-4 w-4" />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip content="Edit">
+                          <IconButton variant="text">
+                            <PencilIcon className="h-4 w-4" />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip content="Delete">
+                          <IconButton variant="text">
+                            <TrashIcon className="h-4 w-4" />
+                          </IconButton>
+                        </Tooltip>
+                      </td>
+                    </tr>
+                    )}
+                    
+                    </>
+                    );
+                }
+              )}
+              {filteredStudents.map(
+                (
+                  {
+                    Role,
+                    name,
+                    email,
+                    Department,
+                    Subdepart,
+                    ID_No,
+                    Phone_No,
+                    Gen,
+                  },
+                  index
+                ) => {
+                  const isLast = index === TABLE_ROWS.length - 1;
+                  const classes = isLast
+                    ? "p-2"
+                    : "p-2 border-b border-blue-gray-50";
+
+                  return (
+                   <>
+                   {searchTerm && (
+                      <tr key={name}>
+                      <td className={classes}>
+                        <div className="flex items-center gap-3">
+                          <UserIcon className=" size-8 text-black" />
+                          <div className="flex flex-col">
+                            <Typography
+                              variant="small"
+                              color="blue-gray"
+                              className="font-normal"
+                            >
+                              {name}
+                            </Typography>
+                            <Typography
+                              variant="small"
+                              color="blue-gray"
+                              className="font-normal opacity-70"
+                            >
+                              {email}
+                            </Typography>
+                          </div>
+                        </div>
+                      </td>
+                      <td className={classes}>
+                        <div className="flex flex-col">
                           <Typography
                             variant="small"
                             color="blue-gray"
                             className="font-normal"
                           >
-                            {Gen}
+                            {Department}
                           </Typography>
-                        </td>
-                        <td className="p-2 border-b border-blue-gray-50">
                           <Typography
                             variant="small"
                             color="blue-gray"
-                            className="font-normal"
+                            className="font-normal opacity-70"
                           >
-                            {Role}
+                            {Subdepart}
                           </Typography>
-                        </td>
-                        <td className="p-2 border-b border-blue-gray-50">
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal"
-                          >
-                            {Phone_No}
-                          </Typography>
-                        </td>
-                        <td className="p-2 border-b border-blue-gray-50">
-                          <Tooltip content="View">
-                            <IconButton variant="text" onClick={openDrawer}>
-                              <EyeIcon className="h-4 w-4" />
-                            </IconButton>
-                          </Tooltip>
-                          <Tooltip content="Edit">
-                            <IconButton variant="text">
-                              <PencilIcon className="h-4 w-4" />
-                            </IconButton>
-                          </Tooltip>
-                          <Tooltip content="Delete">
-                            <IconButton variant="text">
-                              <TrashIcon className="h-4 w-4" />
-                            </IconButton>
-                          </Tooltip>
-                        </td>
-                      </tr>
-                    )
-                  )
+                        </div>
+                      </td>
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {ID_No}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {Gen}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {Role}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {Phone_No}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Tooltip content="View">
+                          <IconButton variant="text" onClick={openDrawer}>
+                            <EyeIcon className="h-4 w-4" />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip content="Edit">
+                          <IconButton variant="text">
+                            <PencilIcon className="h-4 w-4" />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip content="Delete">
+                          <IconButton variant="text">
+                            <TrashIcon className="h-4 w-4" />
+                          </IconButton>
+                        </Tooltip>
+                      </td>
+                    </tr>
+                    )}
+                    
+                    </>
+                    );
+                }
               )}
             </tbody>
           </table>
