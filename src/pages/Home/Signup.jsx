@@ -52,7 +52,7 @@ const SignUp = () => {
           <input type="text" className="w-full px-4 py-3 border border-gray-300 rounded" name="username" placeholder="username" onChange={handleInputChange} />
           <input type="number" className="w-full px-4 py-3 border border-gray-300 rounded" name="phone_number" placeholder="Phone Number" onChange={handleInputChange} />
           <input type="text" className="w-full px-4 py-3 border border-gray-300 rounded" name="student_id" placeholder="Student ID" onChange={handleInputChange} />
-          <input type="date" className="w-full px-4 py-3 border border-gray-300 rounded" name="academic_year" placeholder="Academic Year" onChange={handleInputChange} />
+          <input type="integer" className="w-full px-4 py-3 border border-gray-300 rounded" name="academic_year" placeholder="Academic Year" onChange={handleInputChange} />
           <input type="password" className="w-full px-4 py-3 border border-gray-300 rounded" name="password" placeholder="Password" onChange={handleInputChange} />
           <div className="flex items-center mb-4">
             <input type="checkbox" className="mr-2" />

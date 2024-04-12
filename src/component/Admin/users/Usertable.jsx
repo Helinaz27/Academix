@@ -24,6 +24,8 @@ import {
 } from "@material-tailwind/react";
 import Userinformation from "./Userinformation";
 
+
+
 const SearchHeaderforUsers = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [students, setStudents] = useState([]);
@@ -40,7 +42,7 @@ const SearchHeaderforUsers = () => {
         setLoading(true);
         const response = await axios.get("http://54.237.124.13:8000/user/users/", {
           headers: {
-            Authorization: "Token bc368c75f0ed07291c161ee22214ed1169f61015",
+            Authorization: "Token fb8d756a0b5814f5620ec679633d2baa0882e483",
           },
         });
         setStudents(response.data.students);
@@ -114,7 +116,7 @@ const SearchHeaderforUsers = () => {
                     User Name
                   </Typography>
                 </th>
-                <th className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                <th className="border-y border-blue-gray-100  bg-blue-gray-50/50 p-4">
                   
                   <Typography
                     variant="small"
@@ -153,7 +155,7 @@ const SearchHeaderforUsers = () => {
                 </th>
                 <th className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
                   <Typography
-                    variant="small"
+                    variant="small" 
                     color="blue-gray"
                     className="font-normal leading-none opacity-70"
                   >
