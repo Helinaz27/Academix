@@ -193,7 +193,7 @@ const SearchHeaderforUsers = () => {
                         >
                           {student.email}
                         </Typography>
-                      </div>#WYZH#%
+                      </div>
                     </div>
                   </td>
                   <td className="border-b border-blue-gray-50 p-4">
