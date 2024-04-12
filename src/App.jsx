@@ -7,11 +7,14 @@ import Signup from "./pages/Home/Signup";
 import Navigation from "./component/Home/Navigation";
 import Footer from "./component/General/Footer";
 import User from "./component/Admin/users/User.jsx";
+// import Studentdashboard from "./component/Student/Dashboard/Studentdashboard.jsx";
 import Student from "./component/Student/Dashboard/Studentdashboard.jsx";
 import Gpost from "./component/General-post/Gpost.jsx";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "./Features/auth/authSlice.js";
 import Redirector from "./component/General/Redirector.jsx";
+import Studentdashboard from "./component/Student/Dashboard/Studentdashboard.jsx";
+import StudentNav from "./component/Student/StudentNav.jsx";
 
 function App() {
   const user = useSelector(selectCurrentUser);
@@ -23,6 +26,8 @@ function App() {
     <div className="">
       <main></main>
       <Routes>
+        <Route index element={<Studentdashboard />} />
+        <Route index element={<Signup />} />
         <Route index element={<Home />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Login" element={<Login />} />
