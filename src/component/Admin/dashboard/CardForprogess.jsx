@@ -91,14 +91,11 @@ function CardForprogess() {
           <div className="flex flex-col items-center mb-4">
             <h4>Regestered student</h4>
             <ProgressCircle
-              femaleCount={femaleCount}
-              maleCount={maleCount}
-              femaleColor="#0000FF" // Blue
-              maleColor="#008000" // Green
+             
             />
           </div>
           {/* Add more content here if needed */}
-          <div className="flex gap-5">
+          {/* <div className="flex gap-5">
             <FaCircle className="fill-green-900 mb-1" />
 
             <h3 className=" flex ">males</h3>
@@ -109,7 +106,7 @@ function CardForprogess() {
 
             <h3>females</h3>
             <p>{femaleCount}</p>
-          </div>
+          </div> */}
         </div>
         {/* Add more cards here if needed */}
         
