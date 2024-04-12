@@ -47,29 +47,17 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div className="w-100 h-full bg-white text-gray-800 p-6">
+    <div className="w-[370px] h-full bg-white text-gray-800 p-6 rounded-[30px]">
       {events.classEvents.length > 0 && (
         <div>
           <h3 className="text-xl font-semibold mb-2">Class Events</h3>
           {events.classEvents.map((event) => (
-            <div className="mb-6 bg-blue-900 rounded p-4" key={event.id}>
-              <p className="text-white">
+            <div className="mb-6 bg-[#041643] rounded-[20px] p-4 h-[80px] flex items-center relative" key={event.id}>
+              <p className="text-white flex items-center">
                 <FiCalendar className="w-6 h-6 mr-2" />
                 {event.description}
               </p>
-            </div>
-          ))}
-        </div>
-      )}
-      {events.clubEvents.length > 0 && (
-        <div>
-          <h3 className="text-xl font-semibold mb-2">Club Events</h3>
-          {events.clubEvents.map((event) => (
-            <div className="mb-6 bg-blue-900 rounded p-4" key={event.id}>
-              <p className="text-white">
-                <FiCalendar className="w-6 h-6 mr-2" />
-                {event.description}
-              </p>
+              <img src="./images/PaperIcon.png" alt="event" className="w-[50px] h-[70px] absolute right-0 top-0" />
             </div>
           ))}
         </div>
