@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectCurrentToken } from "../../Features/auth/authSlice";
+import { selectCurrentToken } from "../../../Features/auth/authSlice";
 import {
   Card,
   CardHeader,
