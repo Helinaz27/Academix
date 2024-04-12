@@ -7,8 +7,8 @@ import Postfilter from "./Postfilter";
 const Gpost = () => {
   return (
     <>
-      {/* <TrendingPostcard /> */}
-      <Posts />
+      {/* <TrendingPostcard />
+      <Posts /> */}
       <Postfilter />
     </>
   );

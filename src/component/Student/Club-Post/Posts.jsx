@@ -46,97 +46,10 @@ function Posts() {
     setOpen(true);
   };
   const [open, setOpen] = React.useState(false);
-  // const [isFavorite, setIsFavorite] = React.useState(false);
+  const [isFavorite, setIsFavorite] = React.useState(false);
 
   const handleOpen = () => setOpen((cur) => !cur);
-  // const handleIsFavorite = () => setIsFavorite((cur) => !cur);
-
-  // const handleIsFavorite = (id) => {
-  //   let like = 0;
-  //   like = 1 - like;
-  //   if (like == 1) {
-  //     const url = `http://54.237.124.13:8000/postapi/posts/${id}/likes`;
-  //     try {
-  //       const response = fetch(url, {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Token ${Token}`, // Assuming Token is accessible here
-  //         },
-  //       });
-
-  //       if (!response.ok) {
-  //         throw new Error("Failed to update like status");
-  //       }
-
-  //       // // Update likes count based on the new like status
-  //       // setLikesCount(newLikeStatus === 1 ? likesCount + 1 : likesCount - 1);
-  //       // setLiked(newLikeStatus === 1);
-  //     } catch (error) {
-  //       console.error("Error updating like status:", error);
-  //       // Handle error, e.g., show a toast message
-  //     }
-  //   } else {
-  //   const url = `http://54.237.124.13:8000/postapi/posts/${id}/unlikes`;
-  //     /  //     try {
-  //       const response = fetch(url, {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Token ${Token}`, // Assuming Token is accessible here
-  //         },
-  //       });
-
-  //       if (!response.ok) {
-  //         throw new Error("Failed to update like status");
-  //       }
-
-  //       // // Update likes count based on the new like status
-  //       // setLikesCount(newLikeStatus === 1 ? likesCount + 1 : likesCount - 1);
-  //       // setLiked(newLikeStatus === 1);
-  //     } catch (error) {
-  //       console.error("Error updating like status:", error);
-  //       // Handle error, e.g., show a toast message
-  //     }
-  //   }
-  // };
-  let like = 0;
-
-  const handleIsFavorite = async (id) => {
-    try {
-      let url = `http://54.237.124.13:8000/postapi/posts/${id}/likes`;
-      let response;
-      if (like === 0) {
-        like = 1;
-        response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${Token}`,
-          },
-        });
-      } else {
-        like = 0;
-        url = `http://54.237.124.13:8000/postapi/posts/${id}/unlike`;
-        response = await fetch(url, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${Token}`,
-          },
-        });
-      }
-
-      if (!response.ok) {
-        throw new Error("Failed to update like status");
-      }
-
-      // If needed, update state or perform any other actions upon successful like/unlike
-    } catch (error) {
-      console.error("Error updating like status:", error);
-      // Handle error, e.g., show a toast message
-    }
-  };
+  const handleIsFavorite = () => setIsFavorite((cur) => !cur);
 
   const [report, Setreport] = React.useState(false);
 
@@ -147,7 +60,7 @@ function Posts() {
       <Postdetail
         open={open}
         handleOpen={handleOpen}
-        // isFavorite={isFavorite}
+        isFavorite={isFavorite}
         handleIsFavorite={handleIsFavorite}
         postId={openPostId}
       />
@@ -214,11 +127,6 @@ function Posts() {
                 >
                   <ExclamationCircleIcon class="h-6 w-6 float-left" />
                 </IconButton>
-              </div>
-              <div class="ml-2 block mt-0 font-sans text-sm antialiased font-bold leading-normal text-left">
-                <div class="ml-2 block mt-0 font-sans text-sm antialiased font-bold leading-normal text-left">
-                  {post.likes} Likes
-                </div>
               </div>
               <div class="ml-2 block mt-0 font-sans text-sm antialiased font-bold leading-normal text-left">
                 {post.content}
