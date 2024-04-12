@@ -26,7 +26,7 @@ function App() {
     <div className="">
       <main></main>
       <Routes>
-        <Route index element={<Studentdashboard />} />
+        <Route index element={<Login />} />
         <Route index element={<Signup />} />
         <Route index element={<Home />} />
         <Route path="/Home" element={<Home />} />
