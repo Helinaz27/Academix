@@ -52,7 +52,7 @@ function Posts() {
   // const handleIsFavorite = () => setIsFavorite((cur) => !cur);
 
   // const handleIsFavorite = (id) => {
-  //   let like = 0;const handleReport = () => Setreport(!report);
+  //   let like = 0;
   //   like = 1 - like;
   //   if (like == 1) {
   //     const url = `http://54.237.124.13:8000/postapi/posts/${id}/likes`;
@@ -152,7 +152,7 @@ function Posts() {
         postId={openPostId}
       />
       {Object.values(posts).map((post) => (
-        <div className="grid grid-cols justify-center items-center h-auto max-h-full mt-2 mb-2">
+        <div className="grid grid-cols justify-center items-center h-auto max-h-full mt-2">
           <Card key={post.id} className="w-full max-w-[35rem] mb-5">
             <div floated={false} color="" className="bg-white ">
               <div className="flex items-center gap-2 mt-3 ml-2 mb-2">

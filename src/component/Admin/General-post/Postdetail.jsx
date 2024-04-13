@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { UserIcon } from "@iconicicons/react";
 import {
   Textarea,
   Dialog,
@@ -16,7 +17,7 @@ import { selectCurrentToken } from "../../../Features/auth/authSlice";
 
 function Postdetail({
   open,
-  handleOpenPost,
+  handleOpen,
   isFavorite,
   handleIsFavorite,
   postId,
@@ -35,14 +36,32 @@ function Postdetail({
           }
         );
         const postData = await response.json();
-        // console.log("Post details:", postData);
         setPost(postData); // Set fetched post data to state
-      } catch (error) {}
+
+        // Now fetch comments for the fetched post
+        const commentsResponse = await fetch(
+          `http://54.237.124.13:8000/postapi/posts/${postId}/comments`,
+          {
+            headers: {
+              Authorization: `Token ${Token}`,
+            },
+          }
+        );
+        const commentsData = await commentsResponse.json();
+        console.log("Post details Top:", post);
+        setPost((prevPost) => ({ ...prevPost, comments: commentsData }));
+      } catch (error) {
+        console.error("Error fetching post details and comments:", error);
+        // Handle fetch error
+      }
     };
-    fetchPostDetails();
-  }, [postId]);
+
+    fetchPostDetails(); // Call the function to fetch post details and comments
+  }, [postId, Token]);
+  console.log("Post details bottom:", post);
+
   return (
-    <Dialog size="xl" open={open} handler={handleOpenPost} className="w-full">
+    <Dialog size="xl" open={open} handler={handleOpen} className="w-full">
       {post && (
         <>
           <DialogHeader className="justify-between">
@@ -103,8 +122,38 @@ function Postdetail({
               </div>
             </Card>
             <Card className="w-full">
-              <div className="flex w-full flex-row items-center gap-2 p-2 mt-1 overflow-y-scroll h-full">
-                <Card className="w-full mt-5">{post.post.content}</Card>
+              <div className=" grid grid-cols-1 mt-1 overflow-y-scroll h-full">
+                {post?.comments?.comment?.map((comment, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="  items-start gap-4 py-2 pl-2 pr-8"
+                    >
+                      <div class="max-w-lg mx-auto border px-6 py-4 rounded-lg">
+                        <div class="flex items-center mb-6">
+                          <img src="https://randomuser.me/api/portraits/men/97.jpg" alt="Avatar" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                              <div class="text-lg font-medium text-gray-800">John Doe</div>
+                              <div class="text-gray-500">2 hours ago</div>
+                            </div>
+                          </></div>
+                        <p class="text-lg leading-relaxed mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lorem
+                          nulla. Donec consequat urna a tortor sagittis lobortis.</p>
+                        <div class="flex justify-between items-center">
+                          <div>
+                            <a href="#" class="text-gray-500 hover:text-gray-700 mr-4"><i class="far fa-thumbs-up"></i> Like</a>
+                            <a href="#" class="text-gray-500 hover:text-gray-700"><i class="far fa-comment-alt"></i> Reply</a>
+                          </div>
+                          <div class="flex items-center">
+                            <a href="#" class="text-gray-500 hover:text-gray-700 mr-4"><i class="far fa-flag"></i> Report</a>
+                            <a href="#" class="text-gray-500 hover:text-gray-700"><i class="far fa-share-square"></i> Share</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  );
+                })}
               </div>
               <div className="flex w-full flex-row items-center gap-2 border border-gray-900/10 bg-gray-900/5 p-2 mt-1 ">
                 <div className="flex">

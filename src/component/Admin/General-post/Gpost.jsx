@@ -1,10 +1,7 @@
 import React from "react";
 import Posts from "./Posts";
-import TrendingPostcard from "../General-post/TrendingPostcard";
-import Postfilter from "./Postfilter";
-import AdminhNav from "../AdminhNav";
 import AdminNav from "../AdminNav";
-
+import AdminhNav from "../AdminhNav";
 
 const Gpost = () => {
   return (

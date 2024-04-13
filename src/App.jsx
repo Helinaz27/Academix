@@ -13,9 +13,6 @@ import Navigation from "./component/Home/Navigation";
 import Footer from "./component/General/Footer";
 import User from "./component/Admin/users/User.jsx";
 // import Studentdashboard from "./component/Student/Dashboard/Studentdashboard.jsx";
-import Student from "./component/Student/Dashboard/Studentdashboard.jsx";
-import StudentNav from "./component/Student/StudentNav.jsx";
-import StudentProfile from "./component/Student/Profile/StudentProfile.jsx";
 //Imported Admin Routes
 import AdminDashboard from "./component/Admin/dashboard/Home";
 import Department from "./component/Admin/Departmet/Department.jsx";
@@ -27,10 +24,12 @@ import AdminEvent from "./component/Admin/Event/Events";
 import StudentDashboard from "./component/Student/Dashboard/Home";
 import Event_Post from "./component/Student/View-Post/Event-post/Gpost";
 import General_post from "./component/Student/View-Post/General-post/Gpost.jsx";
+import Club from "./component/Student/Club/Club.jsx";
 import Club_Post from "./component/Student/View-Post/Club-Post/Gpost";
 import Student_Section from "./component/Student/View-Post/Rep-Post/Gpost";
 import StudentCources from "./component/Student/Cources/Cources";
-// import StudentProfile from "./component/Student/Profile/Profile";
+import StudentProfile from "./component/Student/Profile/StudentProfile.jsx";
+import EditProfile from "./component/Student/Profile/EditProfile.jsx";
 // Imported Rep Routes
 
 // Imported Club Owner Routes
@@ -40,11 +39,9 @@ import Redirector from "./component/General/Redirector";
 
 function App() {
   const user = useSelector(selectCurrentUser);
+  console.log("User", user);
   const Token = useSelector(selectCurrentToken);
   console.log("Token", Token);
-  console.log("isStaff", user?.is_staff);
-  console.log("Token", user?.Token);
-
   const isStaff = user?.is_staff;
 
   return (
@@ -68,10 +65,12 @@ function App() {
         <Route path="Student" element={<StudentDashboard />} />
         <Route path="StEvent" element={<Event_Post />} />
         <Route path="General" element={<General_post />} />
-        <Route path="Club" element={<Club_Post />} />
+        <Route path="Club" element={<Club />} />
+        <Route path="Club_Post" element={<Club_Post />} />
         <Route path="Section" element={<Student_Section />} />
         <Route path="Stcources" element={<StudentCources />} />
         <Route path="Profile" element={<StudentProfile />} />
+        <Route path="StudentEditProfile" element={<EditProfile />} />
       </Routes>
       {/* <footer className="">
         <Footer />

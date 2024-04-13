@@ -70,7 +70,7 @@ const SearchHeaderforUsers = () => {
     try {
       await axios.delete(`http://54.237.124.13:8000/user/${id}`, {
         headers: {
-          Authorization: "Token b7d2367bc0e803ac07544e26cba798fe2f82ce63",
+          Authorization: `Token ${Token}`,
         },
       });
       setStudents((prevStudents) =>

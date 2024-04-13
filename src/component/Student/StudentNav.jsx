@@ -97,7 +97,7 @@ const StudentNav = () => {
               >
                 Section
               </span>
-            </li>{" "}
+            </li>
             <li
               className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
               onClick={() => Navigate("/General")}
