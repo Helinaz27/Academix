@@ -30,6 +30,7 @@ const SearchHeaderforUsers = () => {
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
 
+  const toggleOpen = () => setOpen((cur) => !cur);
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -150,6 +151,15 @@ const SearchHeaderforUsers = () => {
                           className="font-normal opacity-70"
                         >
                           {admin.email}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {Role}
                         </Typography>
                       </div>
                     </div>

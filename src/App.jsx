@@ -18,7 +18,7 @@ import StudentList from "./component/Admin/users/User.jsx";
 import AdminEvent from "./component/Admin/Event/Events";
 // Imported Student Routes
 import StudentDashboard from "./component/Student/Dashboard/Home";
-import Event_Post from "./component/Student/";
+import Event_Post from "./component/Student/View-Post/Event-post/Gpost";
 import General_post from "./component/Student/View-Post/General-post/Gpost";
 import Club_Post from "./component/Student/View-Post/Club-Post/Gpost";
 import Student_Section from "./component/Student/View-Post/Rep-Post/Gpost";

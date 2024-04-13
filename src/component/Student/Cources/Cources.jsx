@@ -1,9 +1,8 @@
 import React from "react";
-import StudentDashboard from "./Studentdashboard";
 import StudentNav from "../StudentNav";
 import StudenthNav from "../StudenthNav";
 
-const Home = () => {
+const Cources = () => {
   return (
     <div className="flex bg-white h-screen overflow-hidden">
       <StudentNav />
@@ -11,10 +10,10 @@ const Home = () => {
         <div className="flex">
           <StudenthNav />
         </div>
-        <StudentDashboard />
+        Cources
       </div>
     </div>
   );
 };
 
-export default Home;
+export default Cources;
