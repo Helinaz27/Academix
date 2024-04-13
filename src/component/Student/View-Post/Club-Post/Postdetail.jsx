@@ -12,7 +12,7 @@ import {
 } from "@material-tailwind/react";
 import ArrowDownCircleIcon from "@heroicons/react/24/outline/ArrowDownCircleIcon";
 import { useSelector } from "react-redux";
-import { selectCurrentToken } from "../../Features/auth/authSlice";
+import { selectCurrentToken } from "../../../../Features/auth/authSlice";
 
 function Postdetail({
   open,

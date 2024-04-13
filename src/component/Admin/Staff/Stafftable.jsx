@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectCurrentToken } from "../../../Features/auth/authSlice";
 import axios from "axios";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import {
@@ -19,10 +21,16 @@ import {
 import Staffinformation from "./Staffinformation";
 
 const SearchHeaderforUsers = () => {
+  const Token = useSelector(selectCurrentToken);
   const [searchTerm, setSearchTerm] = useState("");
   const [admins, setAdmins] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = React.useState(false);
 
+  const openDrawer = () => setOpen(true);
+  const closeDrawer = () => setOpen(false);
+
+  const toggleOpen = () => setOpen((cur) => !cur);
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -35,7 +43,7 @@ const SearchHeaderforUsers = () => {
           "http://54.237.124.13:8000/user/users/staff",
           {
             headers: {
-              Authorization: "Token fb8d756a0b5814f5620ec679633d2baa0882e483",
+              Authorization: `Token ${Token}`,
             },
           }
         );
@@ -51,14 +59,16 @@ const SearchHeaderforUsers = () => {
   }, []);
 
   const filteredAdmins = admins.filter((admin) =>
-    `${admin.username}`
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase())
+    `${admin.username}`.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <>
-      <Staffinformation />
+      <Staffinformation
+        openDrawer={openDrawer}
+        closeDrawer={closeDrawer}
+        open={open}
+      />
       <Card className="flex h-full w-full mt-5">
         <CardHeader floated={false} shadow={false} className="rounded-none">
           <div className="mb-8 flex items-center justify-between gap-8">
@@ -142,6 +152,16 @@ const SearchHeaderforUsers = () => {
                         >
                           {admin.email}
                         </Typography>
+
+                        <td className={classes}>
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal"
+                          >
+                            {Role}
+                          </Typography>
+                        </td>
                       </div>
                     </div>
                   </td>
@@ -155,23 +175,16 @@ const SearchHeaderforUsers = () => {
                     </Typography>
                   </td>
                   <td className="border-b border-blue-gray-50 p-4">
-                    <div className="flex gap-2">
-                      <Tooltip content="View">
-                        <IconButton>
-                          <EyeIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip content="Edit">
-                        <IconButton>
-                          <PencilIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip content="Delete">
-                        <IconButton>
-                          <TrashIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
-                    </div>
+                    <Tooltip content="View">
+                      <IconButton onClick={() => handleView(admin)}>
+                        <EyeIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip content="Delete">
+                      <IconButton onClick={() => handleDelete(admin.id)}>
+                        <TrashIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
                   </td>
                 </tr>
               ))}

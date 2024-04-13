@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../Features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   BellIcon,
   HashtagIcon,
@@ -10,13 +14,14 @@ import CalandarDaysIcon from "@heroicons/react/24/solid/CalendarDaysIcon";
 import { MdSpaceDashboard } from "react-icons/md";
 import AcademicCapIcon from "@heroicons/react/24/outline/AcademicCapIcon";
 import UserGroupIcon from "@heroicons/react/24/outline/UserGroupIcon";
-import {
-  Navbar,
-  Typography,
-  IconButton,
-  Avatar,
-} from "@material-tailwind/react";
-const AdminNav = () => {
+const StudentNav = () => {
+  const dispatch = useDispatch();
+  const Navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logOut());
+    Navigate("/Login");
+  };
+  const [open, setOpen] = useState(true);
   return (
     <nav>
       <div className="flex ">
@@ -37,13 +42,13 @@ const AdminNav = () => {
                 !open && "scale-0"
               }`}
             >
-              ACADEMIX
+              ACADEMIX Student
             </h1>
           </div>
-          <ul className="pt-6">
+          <ul className="pt-6 place-items-center mt-38">
             <li
               className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
-            
+              onClick={() => Navigate("/Student")}
             >
               <MdSpaceDashboard class="h-6 w-6 text-[#AFAFAF]" />
               <span
@@ -56,7 +61,7 @@ const AdminNav = () => {
             </li>
             <li
               className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
-             
+              onClick={() => Navigate("/Stcources")}
             >
               <AcademicCapIcon class="h-6 w-6 text-[#AFAFAF]" />
               <span
@@ -64,38 +69,38 @@ const AdminNav = () => {
                   !open && "hidden"
                 } origin-left duration-200 font-sans font-bold`}
               >
-                Department
+                Cources
               </span>
             </li>
             <li
               className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
-            
+              onClick={() => Navigate("/Club")}
             >
-              <UserIcon class="h-6 w-6 text-[#AFAFAF]" />
+              <HashtagIcon class="h-6 w-6 text-[#AFAFAF]" />
               <span
                 className={`${
                   !open && "hidden"
                 } origin-left duration-200 font-sans font-bold`}
               >
-                Users
+                Clubs
               </span>
             </li>
             <li
               className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
-              onClick={() => handlePage("staff")}
+              onClick={() => Navigate("/Section")}
             >
-              <UserGroupIcon class="h-6 w-6 text-[#AFAFAF]" />
+              <HashtagIcon class="h-6 w-6 text-[#AFAFAF]" />
               <span
                 className={`${
                   !open && "hidden"
                 } origin-left duration-200 font-sans font-bold`}
               >
-                Staff
+                Section
               </span>
             </li>{" "}
             <li
               className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
-              
+              onClick={() => Navigate("/General")}
             >
               <HashtagIcon class="h-6 w-6 text-[#AFAFAF]" />
               <span
@@ -108,18 +113,21 @@ const AdminNav = () => {
             </li>
             <li
               className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
-             
+              onClick={() => Navigate("/Profile")}
             >
-              <CalandarDaysIcon class="h-6 w-6 text-[#AFAFAF]" />
+              <UserIcon class="h-6 w-6 text-[#AFAFAF]" />
               <span
                 className={`${
                   !open && "hidden"
                 } origin-left duration-200 font-sans font-bold`}
               >
-                Event
+                Profile
               </span>
             </li>
-            <li className="flex absolute bottom-0 mb-5 rounded-md p-2 cursor-pointer hover:bg-white hover:text-neutral-800 font-semibold leading-3  text-[#AFAFAF] text-sm items-center">
+            <li
+              className="flex absolute bottom-0 mb-5 rounded-md p-2 cursor-pointer hover:bg-white hover:text-neutral-800 font-semibold leading-3  text-[#AFAFAF] text-sm items-center"
+              onClick={() => handleLogout()}
+            >
               <ArrowLeftEndOnRectangleIcon class="h-6 w-6 hover:text-blue-600 text-zinc-400 rotate-180" />
               <span
                 className={`${
@@ -131,42 +139,8 @@ const AdminNav = () => {
             </li>
           </ul>
         </div>
-        <div className="h-screen flex-1 w-full">
-          <Navbar className="mx-auto w-full px-6 py-3">
-            <div className="flex items-center justify-between text-blue-gray-900">
-              <Typography variant="h6" className="mr-4 cursor-pointer py-1.5">
-                AASTU Admin
-              </Typography>
-              <IconButton
-                variant="text"
-                className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-              ></IconButton>
-              <div className="flex flex-col gap-6">
-                <div className="flex items-center gap-4">
-                  <IconButton>
-                    <BellIcon className="text-white" />
-                  </IconButton>
-                  <div>
-                    <Typography variant="h6">Abebe Bekele</Typography>
-                    <Typography
-                      variant="small"
-                      color="gray"
-                      className="font-normal text-right"
-                    >
-                      Admin
-                    </Typography>
-                  </div>
-                  <Avatar
-                    src="https://docs.material-tailwind.com/img/face-2.jpg"
-                    alt="avatar"
-                  />
-                </div>
-              </div>
-            </div>
-          </Navbar> 
-       </div>
       </div>
     </nav>
   );
 };
-export default AdminNav;
+export default StudentNav;

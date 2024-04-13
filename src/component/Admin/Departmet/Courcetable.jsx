@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectCurrentToken } from "../../../Features/auth/authSlice";
 import axios from "axios";
 import {
   Dialog,
@@ -10,7 +12,14 @@ import {
   Option,
 } from "@material-tailwind/react";
 
-function Courcetable({ departmentId, handleIsFavorite, handleOpen, open, isFavorite }) {
+function Courcetable({
+  departmentId,
+  handleIsFavorite,
+  handleOpen,
+  open,
+  isFavorite,
+}) {
+  const Token = useSelector(selectCurrentToken);
   const [courses, setCourses] = useState([]);
   const [academicYear, setAcademicYear] = useState(1); // Default to 1st year
 
@@ -18,13 +27,15 @@ function Courcetable({ departmentId, handleIsFavorite, handleOpen, open, isFavor
     const fetchCourses = async () => {
       try {
         // const response = await axios.get(`http://54.237.124.13:8000/basicapp/department/${departmentId}/year/${academicYear}`, {
-         
-        const response = await axios.get(`http://54.237.124.13:8000/basicapp/department/${departmentId}/year/3`, {
-          
-          headers: {
-            Authorization: "Token fb8d756a0b5814f5620ec679633d2baa0882e483",
-          },
-        });
+
+        const response = await axios.get(
+          `http://54.237.124.13:8000/basicapp/department/${departmentId}/year/3`,
+          {
+            headers: {
+              Authorization: `Token ${Token}`,
+            },
+          }
+        );
         setCourses(response.data.courses);
       } catch (error) {
         console.error(error);
@@ -62,7 +73,12 @@ function Courcetable({ departmentId, handleIsFavorite, handleOpen, open, isFavor
           </div>
           <div className="flex w-10 flex-col float-right"></div>
           <div className="flex items-center gap-2">
-            <Select size="md" label="Select Year" value={academicYear} onChange={handleChangeYear}>
+            <Select
+              size="md"
+              label="Select Year"
+              value={academicYear}
+              onChange={handleChangeYear}
+            >
               <Option value={1}>I</Option>
               <Option value={2}>II</Option>
               <Option value={3}>III</Option>
@@ -87,7 +103,9 @@ function Courcetable({ departmentId, handleIsFavorite, handleOpen, open, isFavor
               {courses.map((course) => (
                 <tr key={course.id}>
                   <td className="px-6 py-4 whitespace-nowrap">{course.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{course.credit_hour}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {course.credit_hour}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -96,11 +114,7 @@ function Courcetable({ departmentId, handleIsFavorite, handleOpen, open, isFavor
         <DialogFooter className="justify-between">
           <div className="flex items-center gap-16">
             <div>
-              <Typography
-                variant="small"
-                color="gray"
-                className="font-normal"
-              >
+              <Typography variant="small" color="gray" className="font-normal">
                 Number Of Courses
               </Typography>
               <Typography color="blue-gray" className="font-medium">
@@ -108,11 +122,7 @@ function Courcetable({ departmentId, handleIsFavorite, handleOpen, open, isFavor
               </Typography>
             </div>
             <div>
-              <Typography
-                variant="small"
-                color="gray"
-                className="font-normal"
-              >
+              <Typography variant="small" color="gray" className="font-normal">
                 Total Credit Hours
               </Typography>
               <Typography color="blue-gray" className="font-medium">

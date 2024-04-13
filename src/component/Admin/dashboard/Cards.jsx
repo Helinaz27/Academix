@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardBody, Typography } from "@material-tailwind/react";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { selectCurrentToken } from "../../../Features/auth/authSlice";
 
 function Cards() {
+  const Token = useSelector(selectCurrentToken);
+
   const [studentCounts, setStudentCounts] = useState({
     first_year: 0,
     second_year: 0,
@@ -18,7 +22,7 @@ function Cards() {
           "http://54.237.124.13:8000/user/counts/",
           {
             headers: {
-              Authorization: `Token fb8d756a0b5814f5620ec679633d2baa0882e483`,
+              Authorization: `Token ${Token}`,
             },
           }
         );
@@ -33,8 +37,8 @@ function Cards() {
 
   return (
     <>
-      <Card className="grid grid-cols-5 md:grid-cols-5 sm:grid-cols-1  ">
-        <Card className="ml-5 mt-6 w-52 bg-[#C2D2F9] md:grid-cols-2 sm:grid-cols-1 rounded-xl w-55 h-32">
+      <Card className=" mt-1 pr-3 grid grid-cols-5 md:grid-cols-5 sm:grid-cols-1  ">
+        <Card className="bg-[#C2D2F9] p-4 ml-3 rounded-[20px] shadow-sm overflow-hidden">
           <CardBody>
             <Typography
               variant="h4"
@@ -49,7 +53,7 @@ function Cards() {
             </Typography>
           </CardBody>
         </Card>
-        <Card className="ml-5 mt-6 w-52 bg-[#C2D2F9] md:grid-cols-2 sm:grid-cols-1 rounded-xl w-55 h-32">
+        <Card className="bg-[#C2D2F9] p-4 ml-3 rounded-[20px] shadow-sm overflow-hidden">
           <CardBody>
             <Typography
               variant="h4"
@@ -64,7 +68,7 @@ function Cards() {
             </Typography>
           </CardBody>
         </Card>
-        <Card className="ml-5 mt-6 w-52 bg-[#C2D2F9] md:grid-cols-2 sm:grid-cols-1 rounded-xl w-55 h-32">
+        <Card className="bg-[#C2D2F9] p-4 ml-3 rounded-[20px] shadow-sm overflow-hidden">
           <CardBody>
             <Typography
               variant="h4"
@@ -79,7 +83,7 @@ function Cards() {
             </Typography>
           </CardBody>
         </Card>
-        <Card className="ml-5 mt-6 w-52 bg-[#C2D2F9] md:grid-cols-2 sm:grid-cols-1 rounded-xl w-55 h-32">
+        <Card className="bg-[#C2D2F9] p-4 ml-3 rounded-[20px] shadow-sm overflow-hidden">
           <CardBody>
             <Typography
               variant="h4"
@@ -94,7 +98,7 @@ function Cards() {
             </Typography>
           </CardBody>
         </Card>
-        <Card className="ml-5 mt-6 w-52 bg-[#C2D2F9] md:grid-cols-2 sm:grid-cols-1 rounded-xl w-55 h-32">
+        <Card className="bg-[#C2D2F9] p-4 ml-3 rounded-[20px] shadow-sm overflow-hidden">
           <CardBody className=" font-extrabold">
             <Typography
               variant="h4"
