@@ -15,6 +15,7 @@ import { selectCurrentUser } from "./Features/auth/authSlice.js";
 import Redirector from "./component/General/Redirector.jsx";
 import Studentdashboard from "./component/Student/Dashboard/Studentdashboard.jsx";
 import StudentNav from "./component/Student/StudentNav.jsx";
+import StudentProfile from "./component/Student/Profile/StudentProfile.jsx";
 
 function App() {
   const user = useSelector(selectCurrentUser);
@@ -26,7 +27,8 @@ function App() {
     <div className="">
       <main></main>
       <Routes>
-        <Route index element={<Studentdashboard />} />
+        <Route path="/StudentProfile" element={<StudentProfile />} />
+        <Route index element={<StudentProfile/>} />
         <Route index element={<Signup />} />
         <Route index element={<Home />} />
         <Route path="/Home" element={<Home />} />
