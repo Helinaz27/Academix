@@ -12,11 +12,6 @@ import {
 } from "@material-tailwind/react";
 import ArrowDownCircleIcon from "@heroicons/react/24/outline/ArrowDownCircleIcon";
 import { useSelector } from "react-redux";
-import { selectCurrentToken } from "../../../../Features/auth/authSlice";
-
-function Postdetail({
-  open,
-  handleOpen,
 import { selectCurrentToken } from "../../../Features/auth/authSlice";
 
 function Postdetail({
@@ -47,7 +42,6 @@ function Postdetail({
     fetchPostDetails();
   }, [postId]);
   return (
-    <Dialog size="xl" open={open} handler={handleOpen} className="w-full">
     <Dialog size="xl" open={open} handler={handleOpenPost} className="w-full">
       {post && (
         <>

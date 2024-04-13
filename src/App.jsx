@@ -14,11 +14,6 @@ import Footer from "./component/General/Footer";
 import User from "./component/Admin/users/User.jsx";
 // import Studentdashboard from "./component/Student/Dashboard/Studentdashboard.jsx";
 import Student from "./component/Student/Dashboard/Studentdashboard.jsx";
-import Gpost from "./component/General-post/Gpost.jsx";
-import { useSelector } from "react-redux";
-import { selectCurrentUser } from "./Features/auth/authSlice.js";
-import Redirector from "./component/General/Redirector.jsx";
-import Studentdashboard from "./component/Student/Dashboard/Studentdashboard.jsx";
 import StudentNav from "./component/Student/StudentNav.jsx";
 import StudentProfile from "./component/Student/Profile/StudentProfile.jsx";
 //Imported Admin Routes
@@ -31,11 +26,11 @@ import AdminEvent from "./component/Admin/Event/Events";
 // Imported Student Routes
 import StudentDashboard from "./component/Student/Dashboard/Home";
 import Event_Post from "./component/Student/View-Post/Event-post/Gpost";
-import General_post from "./component/Student/View-Post/General-post/Gpost";
+import General_post from "./component/Student/View-Post/General-post/Gpost.jsx";
 import Club_Post from "./component/Student/View-Post/Club-Post/Gpost";
 import Student_Section from "./component/Student/View-Post/Rep-Post/Gpost";
 import StudentCources from "./component/Student/Cources/Cources";
-import StudentProfile from "./component/Student/Profile/Profile";
+// import StudentProfile from "./component/Student/Profile/Profile";
 // Imported Rep Routes
 
 // Imported Club Owner Routes
@@ -56,9 +51,8 @@ function App() {
     <div className="">
       <main></main>
       <Routes>
-
         <Route path="/StudentProfile" element={<StudentProfile />} />
-        <Route index element={<StudentProfile/>} />
+        <Route index element={<Home />} />
         <Route index element={<Signup />} />
         <Route index element={<Home />} />
         <Route path="/" element={<Home />} />
