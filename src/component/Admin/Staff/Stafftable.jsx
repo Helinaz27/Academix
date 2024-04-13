@@ -152,15 +152,16 @@ const SearchHeaderforUsers = () => {
                         >
                           {admin.email}
                         </Typography>
-                      </td>
-                      <td className={classes}>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {Role}
-                        </Typography>
+
+                        <td className={classes}>
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal"
+                          >
+                            {Role}
+                          </Typography>
+                        </td>
                       </div>
                     </div>
                   </td>
