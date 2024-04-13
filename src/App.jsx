@@ -9,6 +9,18 @@ import {
 import Home from "./pages/Home/Home.jsx";
 import Login from "./pages/Home/Login";
 import Signup from "./pages/Home/Signup";
+import Navigation from "./component/Home/Navigation";
+import Footer from "./component/General/Footer";
+import User from "./component/Admin/users/User.jsx";
+// import Studentdashboard from "./component/Student/Dashboard/Studentdashboard.jsx";
+import Student from "./component/Student/Dashboard/Studentdashboard.jsx";
+import Gpost from "./component/General-post/Gpost.jsx";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "./Features/auth/authSlice.js";
+import Redirector from "./component/General/Redirector.jsx";
+import Studentdashboard from "./component/Student/Dashboard/Studentdashboard.jsx";
+import StudentNav from "./component/Student/StudentNav.jsx";
+import StudentProfile from "./component/Student/Profile/StudentProfile.jsx";
 //Imported Admin Routes
 import AdminDashboard from "./component/Admin/dashboard/Home";
 import Department from "./component/Admin/Departmet/Department.jsx";
@@ -44,6 +56,10 @@ function App() {
     <div className="">
       <main></main>
       <Routes>
+
+        <Route path="/StudentProfile" element={<StudentProfile />} />
+        <Route index element={<StudentProfile/>} />
+        <Route index element={<Signup />} />
         <Route index element={<Home />} />
         <Route path="/" element={<Home />} />
         <Route path="Login" element={<Login />} />
