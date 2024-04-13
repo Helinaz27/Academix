@@ -1,72 +1,7 @@
-//   return (
-//     <div>
-//       <div className="flex justify-between">
-//         <h1 className="text-black font-serif font-bold text-2xl text-left mt-6 p-3 flex justify-start">
-//           Users
-//         </h1>
-//         <div className="relative mt-11">
-//           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-//             <FaSearch className="text-gray-400" />
-//           </div>
-//           <input
-//             type="text"
-//             placeholder="Search..."
-//             value={searchTerm}
-//             onChange={handleSearch}
-//             className="px-10 py-2 text-xl font-serif border-[2px] h-[2.5rem] w-full rounded-lg border-gray-300  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-//           />
-//         </div>
-//         <div className="flex px-2 items-right mt-6 p-3">
-//           <select className="border border-gray-300 bg-gray-100 rounded-md py-1 px-2">
-//             <option value="student">Student</option>
-//             <option value="Student Union">Student Union</option>
-//             <option value="Representative">Representative</option>
-//           </select>
-//         </div>
-//       </div>
-//       {searchTerm && (
-//         <div>
-//           <div className="flex justify-between bg-gray-100 px-4 pt-5 pb-4 rounded-xl border border-gray-200  flex-1 m-2 p-6 ">
-//             <div className="mt-3">
-//               <table className="w-full text-gray-700 min-w-full divide-y divide-gray-200 ">
-//                 <thead className="">
-//                   <tr className="text-gray-400 text-left py-4">
-//                     <th className="w-1/6">NAME</th>
-//                     <th className="w-1/6">DEPARTMENT</th>
-//                     <th className="w-1/6">ID NUMBER</th>
-//                     <th className="w-1/6">GENDER</th>
-//                     <th className="w-1/6">ROLE</th>
-//                     <th className="w-1/6">PHONE NUMBER</th>
-//                   </tr>
-//                 </thead>
-//                 <tbody className="bg-white divide-y divide-gray-200  ">
-//                   {filteredStudents.map((student) => (
-//                     <tr
-//                       key={student.id}
-//                       className="text-gray-500 text-left py-4"
-//                     >
-//                       <td className="font-bold">{student.name}</td>
-//                       <td>{student.department}</td>
-//                       <td>{student.IdNumber}</td>
-//                       <td>{student.Gender}</td>
-//                       <td>{student.Role}</td>
-//                       <td>{student.PhoneNumber}</td>
-//                     </tr>
-//                   ))}
-//                 </tbody>
-//               </table>
-//             </div>
-//           </div>
-//         </div>
-//       )}
-//       {/* {!searchTerm && <UsersList />} */}
-//     </div>
-//   );
-// };
-
-// export default SearchHeaderforUsers;
-import React from "react";
-import StudentsData from "./StudentsData";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectCurrentToken } from "../../../Features/auth/authSlice";
+import axios from "axios";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import AddStaff from "./AddStaff";
 import {
@@ -179,33 +114,55 @@ const TABLE_ROWS = [
 ];
 
 const SearchHeaderforUsers = () => {
-  const [searchTerm, setSearchTerm] = React.useState("");
+  const Token = useSelector(selectCurrentToken);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [admins, setAdmins] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = React.useState(false);
+
+  const openDrawer = () => setOpen(true);
+  const closeDrawer = () => setOpen(false);
 
   const toggleOpen = () => setOpen((cur) => !cur);
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredStudents = StudentsData.filter((student) =>
-    student.name.toLowerCase().includes(searchTerm.toLowerCase())
+  useEffect(() => {
+    const fetchAdmins = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          "http://54.237.124.13:8000/user/users/staff",
+          {
+            headers: {
+              Authorization: `Token ${Token}`,
+            },
+          }
+        );
+        setAdmins(response.data.admin);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching admins:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchAdmins();
+  }, []);
+
+  const filteredAdmins = admins.filter((admin) =>
+    `${admin.username}`.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  const [open, setOpen] = React.useState(false);
-
-  const openDrawer = () => setOpen(true);
-  const closeDrawer = () => setOpen(false);
-
-  const [openadd, setOpenadd] = React.useState(false);
-  const handleOpen = () => setOpenadd((cur) => !cur);
 
   return (
     <>
-      <AddStaff handleOpen={handleOpen} openadd={openadd} />
       <Staffinformation
         openDrawer={openDrawer}
-        open={open}
         closeDrawer={closeDrawer}
+        open={open}
       />
-      <Card className="flex h-full w-full">
+      <Card className="flex h-full w-full mt-5">
         <CardHeader floated={false} shadow={false} className="rounded-none">
           <div className="mb-8 flex items-center justify-between gap-8">
             <div>
@@ -341,37 +298,32 @@ const SearchHeaderforUsers = () => {
                         >
                           {Role}
                         </Typography>
-                      </td>
-                      <td className={classes}>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {Phone_No}
-                        </Typography>
-                      </td>
-                      <td className={classes}>
-                        <Tooltip content="View">
-                          <IconButton variant="text" onClick={openDrawer}>
-                            <EyeIcon className="h-4 w-4" />
-                          </IconButton>
-                        </Tooltip>
-                        <Tooltip content="Edit">
-                          <IconButton variant="text">
-                            <PencilIcon className="h-4 w-4" />
-                          </IconButton>
-                        </Tooltip>
-                        <Tooltip content="Delete">
-                          <IconButton variant="text">
-                            <TrashIcon className="h-4 w-4" />
-                          </IconButton>
-                        </Tooltip>
-                      </td>
-                    </tr>
-                  );
-                }
-              )}
+                      </div>
+                    </div>
+                  </td>
+                  <td className="border-b border-blue-gray-50 p-4">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {admin.phone_number}
+                    </Typography>
+                  </td>
+                  <td className="border-b border-blue-gray-50 p-4">
+                    <Tooltip content="View">
+                      <IconButton onClick={() => handleView(admin)}>
+                        <EyeIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip content="Delete">
+                      <IconButton onClick={() => handleDelete(admin.id)}>
+                        <TrashIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </CardBody>
