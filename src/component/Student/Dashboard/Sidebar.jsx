@@ -25,7 +25,7 @@ const Sidebar = () => {
   useEffect(() => {
     const fetchAdminPosts = async () => {
       try {
-        const posts = await AdminPostService.getAdminPosts(); // Use the renamed service
+        const posts = await AdminPostService.getAdminPosts();
         const classEvents = [];
         const clubEvents = [];
 
@@ -47,30 +47,18 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div className="w-100 h-full bg-white text-gray-800 p-6">
+    <div className="w-[370px] h-full bg-white text-gray-800 p-6 rounded-[30px]">
       {events.classEvents.length > 0 && (
         <div>
-          <EventTitle>Class Events</EventTitle>
+          <h3 className="text-xl font-semibold mb-2">Class Events</h3>
           {events.classEvents.map((event) => (
-            <EventContainer key={event.id}>
-              <EventDescription>
+            <div className="mb-6 bg-[#041643] rounded-[20px] p-4 h-[80px] flex items-center relative" key={event.id}>
+              <p className="text-white flex items-center">
                 <FiCalendar className="w-6 h-6 mr-2" />
                 {event.description}
-              </EventDescription>
-            </EventContainer>
-          ))}
-        </div>
-      )}
-      {events.clubEvents.length > 0 && (
-        <div>
-          <EventTitle>Club Events</EventTitle>
-          {events.clubEvents.map((event) => (
-            <EventContainer key={event.id}>
-              <EventDescription>
-                <FiCalendar className="w-6 h-6 mr-2" />
-                {event.description}
-              </EventDescription>
-            </EventContainer>
+              </p>
+              <img src="./images/PaperIcon.png" alt="event" className="w-[50px] h-[70px] absolute right-0 top-0" />
+            </div>
           ))}
         </div>
       )}

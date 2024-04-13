@@ -3,13 +3,11 @@ import { useSelector } from "react-redux";
 import { selectCurrentToken } from "../../../Features/auth/authSlice";
 import axios from "axios";
 import {
-  Button,
   Dialog,
   DialogHeader,
   DialogBody,
   DialogFooter,
   Select,
-  IconButton,
   Typography,
   Option,
 } from "@material-tailwind/react";
@@ -62,14 +60,14 @@ function Courcetable({
                 color="blue-gray"
                 className="font-medium"
               >
-                Electrical Department
+                Eletrical Department
               </Typography>
               <Typography
                 variant="small"
                 color="gray"
                 className="text-xs font-normal"
               >
-                Engneering
+                Engineering
               </Typography>
             </div>
           </div>
@@ -120,7 +118,7 @@ function Courcetable({
                 Number Of Courses
               </Typography>
               <Typography color="blue-gray" className="font-medium">
-                10
+                {courses.length}
               </Typography>
             </div>
             <div>
@@ -128,7 +126,7 @@ function Courcetable({
                 Total Credit Hours
               </Typography>
               <Typography color="blue-gray" className="font-medium">
-                18
+                {courses.reduce((acc, course) => acc + course.credit_hour, 0)}
               </Typography>
             </div>
           </div>
@@ -137,4 +135,5 @@ function Courcetable({
     </>
   );
 }
+
 export default Courcetable;

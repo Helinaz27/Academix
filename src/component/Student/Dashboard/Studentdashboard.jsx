@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PostService from "./PostService.js";
+// import { IoMdTime } from "react-icons/fi";
 import TrendingPosts from "./TrendingPosts.jsx";
 import Sidebar from "./Sidebar.jsx";
 import allCourses from "./AllCourses.json";
@@ -101,7 +102,7 @@ const StudentDashboard = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow-md mt-4">
+        <div className="bg-white rounded-[30px] shadow-md mt-4 hidden xl:block">
           <Sidebar />
         </div>
       </div>

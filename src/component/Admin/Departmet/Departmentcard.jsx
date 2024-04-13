@@ -6,15 +6,16 @@ import {
   CardBody,
   CardFooter,
   Typography,
-  Button,
 } from "@material-tailwind/react";
-import React from "react";
 import Courcetable from "./Courcetable";
 import AdminNav from "../AdminNav";
 
 function Departmentcard() {
+  const [departments, setDepartments] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [isFavorite, setIsFavorite] = React.useState(false);
+  const [selectedDepartmentId, setSelectedDepartmentId] = useState(null);
+  const courcetableRef = useRef(null); // Create a ref for Courcetable
 
   const handleOpen = (departmentId) => {
     setSelectedDepartmentId(departmentId);
@@ -103,4 +104,5 @@ function Departmentcard() {
     </>
   );
 }
+
 export default Departmentcard;
