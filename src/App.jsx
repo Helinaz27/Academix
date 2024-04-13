@@ -24,7 +24,7 @@ import StudentProfile from "./component/Student/Profile/StudentProfile.jsx";
 //Imported Admin Routes
 import AdminDashboard from "./component/Admin/dashboard/Home";
 import Department from "./component/Admin/Departmet/Department.jsx";
-import Admin_General_post from "./component/Admin/General-post/Gpost";
+import Admin_General_post from "./component/Admin/General-post/Gpost.jsx";
 import Staff from "./component/Admin/Staff/Staff";
 import StudentList from "./component/Admin/users/User.jsx";
 import AdminEvent from "./component/Admin/Event/Events";

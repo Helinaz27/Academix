@@ -159,7 +159,7 @@ const SearchHeaderforUsers = () => {
                             color="blue-gray"
                             className="font-normal"
                           >
-                            {Role}
+                            {admin.Role}
                           </Typography>
                         </td>
                       </div>

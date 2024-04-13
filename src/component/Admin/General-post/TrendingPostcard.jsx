@@ -26,7 +26,6 @@ function TrendingPostcard() {
     onMouseEnter: () => setOpenPopover(true),
     onMouseLeave: () => setOpenPopover(false),
   };
-
   return (
     <div>
       <Popover open={openPopover} handler={setOpenPopover}>
@@ -41,6 +40,13 @@ function TrendingPostcard() {
             </Typography>
           </CardHeader>
           <div className="grid  gap-1 grid-cols-4 sm:grid-cols-4 md:grid-cols-4 h-44 overflow-y-scroll">
+            {data1.map(({ imageLink }, index) => (
+              <div key={index}>
+                <PopoverHandler {...triggers}>
+                  <img
+                    className="h-20 w-20  rounded-lg object-cover object-center cursor-pointer"
+                    src={imageLink}
+                    alt="gallery-photo"
             {trendingPosts.map((post) => (
               <div
                 key={post.id}
@@ -51,6 +57,7 @@ function TrendingPostcard() {
                     src={`http://54.237.124.13:8000${post.file}`}
                     alt={`Trending Post ${post.id}`}
                     className="w-full h-full object-cover rounded-[20px] shadow-sm"
+
                   />
                 </PopoverHandler>
               </div>
@@ -59,6 +66,12 @@ function TrendingPostcard() {
         </Card>
 
         <PopoverContent {...triggers} className="z-50 max-w-[24rem]">
+          <Postdetail
+            open={open}
+            handleOpen={handleOpen}
+            isFavorite={isFavorite}
+            handleIsFavorite={handleIsFavorite}
+          />
           <div className="w-full max-w-[35rem] mb-5">
             <div floated={false} color="" className="bg-white ">
               <div className="flex items-center gap-2 mt-3 ml-2 mb-2">
