@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardBody, Typography } from "@material-tailwind/react";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -50,7 +49,7 @@ function Cards() {
             </Typography>
             <br />
             <Typography variant="h5" color="blue-gray" className="">
-              1500
+              {studentCounts.first_year}
             </Typography>
           </CardBody>
         </Card>
@@ -65,7 +64,7 @@ function Cards() {
             </Typography>
             <br />
             <Typography variant="h5" color="blue-gray" className="">
-              1500
+              {studentCounts.second_year}
             </Typography>
           </CardBody>
         </Card>
@@ -80,7 +79,7 @@ function Cards() {
             </Typography>
             <br />
             <Typography variant="h5" color="blue-gray" className="">
-              1500
+              {studentCounts.third_year}
             </Typography>
           </CardBody>
         </Card>
@@ -95,7 +94,7 @@ function Cards() {
             </Typography>
             <br />
             <Typography variant="h5" color="blue-gray" className="">
-              1500
+              {studentCounts.forth_year}
             </Typography>
           </CardBody>
         </Card>
@@ -110,7 +109,7 @@ function Cards() {
             </Typography>
             <br />
             <Typography variant="h5" color="blue-gray" className="">
-              1500
+              {studentCounts.fifth_year}
             </Typography>
           </CardBody>
         </Card>

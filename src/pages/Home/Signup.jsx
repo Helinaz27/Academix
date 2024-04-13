@@ -58,9 +58,7 @@ const SignUp = () => {
   };
 
   return (
-    // Container for centering the form vertically and horizontally
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      {/* Form container */}
       <div className="w-full max-w-lg bg-white rounded-lg shadow-md p-8">
         {/* Signup form */}
         <h2 className="text-3xl text-center text-gray-900 mb-6">Sign Up</h2>

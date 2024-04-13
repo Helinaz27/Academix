@@ -17,6 +17,11 @@ import { selectCurrentToken } from "../../../../Features/auth/authSlice";
 function Postdetail({
   open,
   handleOpen,
+import { selectCurrentToken } from "../../../Features/auth/authSlice";
+
+function Postdetail({
+  open,
+  handleOpenPost,
   isFavorite,
   handleIsFavorite,
   postId,
@@ -43,6 +48,7 @@ function Postdetail({
   }, [postId]);
   return (
     <Dialog size="xl" open={open} handler={handleOpen} className="w-full">
+    <Dialog size="xl" open={open} handler={handleOpenPost} className="w-full">
       {post && (
         <>
           <DialogHeader className="justify-between">
