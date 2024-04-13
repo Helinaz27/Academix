@@ -102,9 +102,11 @@ export default function Login() {
                 <input className="mr-2" type="checkbox" />
                 <span>Remember Me</span>
               </label>
-              <p className="text-indigo-600 cursor-pointer transition-colors duration-300 hover:text-indigo-800">
-                Create an account
-              </p>
+              <button onClick={() => Navigate("Signup")}>
+                <p className="text-indigo-600 cursor-pointer transition-colors duration-300 hover:text-indigo-800">
+                  Create Account
+                </p>
+              </button>
             </div>
           </form>
         </div>
