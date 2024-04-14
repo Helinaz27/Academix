@@ -31,6 +31,7 @@ import Student_Section from "./component/Student/View-Post/Rep-Post/Gpost";
 import StudentCources from "./component/Student/Cources/Cources";
 import StudentProfile from "./component/Student/Profile/StudentProfile.jsx";
 import EditProfile from "./component/Student/Profile/EditProfile.jsx";
+import Chat from "./component/Student/AI-Chat/AI";
 // Imported Rep Routes
 
 // Imported Club Owner Routes
@@ -73,6 +74,7 @@ function App() {
         <Route path="Profile" element={<StudentProfile />} />
         <Route path="AdminCources" element={<AdminCources />} />
         <Route path="StudentEditProfile" element={<EditProfile />} />
+        <Route path="Chat" element={<Chat />} />
       </Routes>
       {/* <footer className="">
         <Footer />

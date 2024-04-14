@@ -1,0 +1,27 @@
+{
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/StudentProfile", "dest": "/StudentProfile" },
+    { "src": "/", "dest": "/Home" },
+    { "src": "/Login", "dest": "/Login" },
+    { "src": "/Signup", "dest": "/Signup" },
+    { "src": "/Redirector", "dest": "/Redirector" },
+    { "src": "/Admin", "dest": "/AdminDashboard" },
+    { "src": "/Department", "dest": "/Department" },
+    { "src": "/Admin_General_post", "dest": "/Admin_General_post" },
+    { "src": "/Staff", "dest": "/Staff" },
+    { "src": "/StudentList", "dest": "/StudentList" },
+    { "src": "/AdminEvent", "dest": "/AdminEvent" },
+    { "src": "/Student", "dest": "/StudentDashboard" },
+    { "src": "/StEvent", "dest": "/Event_Post" },
+    { "src": "/General", "dest": "/General_post" },
+    { "src": "/Club", "dest": "/Club" },
+    { "src": "/Club_Post", "dest": "/Club_Post" },
+    { "src": "/Section", "dest": "/Student_Section" },
+    { "src": "/Stcources", "dest": "/StudentCources" },
+    { "src": "/Profile", "dest": "/StudentProfile" },
+    { "src": "/AdminCources", "dest": "/AdminCources" },
+    { "src": "/StudentEditProfile", "dest": "/EditProfile" },
+    { "src": "/Chat", "dest": "/Chat" }
+  ]
+}

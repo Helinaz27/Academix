@@ -35,10 +35,7 @@ const StudenthNav = () => {
                   <MegaphoneIcon className="text-white" />
                 </IconButton>
 
-                <IconButton
-                  onClick={handleOpen}
-                  hidden={!LoggedinUser?.is_staff ? false : true}
-                >
+                <IconButton onClick={handleOpen}>
                   <PlusCircleIcon className="text-white fill-white-400" />
                 </IconButton>
                 <div>
@@ -49,9 +46,7 @@ const StudenthNav = () => {
                     variant="small"
                     color="gray"
                     className="font-normal text-right"
-                  >
-                    {LoggedinUser.student.is_rep ? "Rep" : "Student"}
-                  </Typography>
+                  ></Typography>
                 </div>
                 <Avatar
                   src="https://docs.material-tailwind.com/img/face-2.jpg"
