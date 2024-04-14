@@ -1,34 +1,37 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { selectCurrentToken } from "../../../Features/auth/authSlice";
 
 const ChatForm = () => {
+  const Token = useSelector(selectCurrentToken);
   const [messages, setMessages] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const question = e.target.elements.question.value;
-    if (question.trim() === '') return;
+    if (question.trim() === "") return;
 
     try {
       const response = await axios.post(
-        'http://54.237.124.13:8000/AI/chat',
+        "http://54.237.124.13:8000/AI/chat",
         { question },
         {
           headers: {
-            Authorization: `Token fb8d756a0b5814f5620ec679633d2baa0882e483`,
+            Authorization: `Token ${Token}`,
           },
         }
       );
       const answer = response.data.answer;
       setMessages((prevMessages) => [
         ...prevMessages,
-        { text: question, sender: 'user' },
-        { text: answer, sender: 'bot' },
+        { text: question, sender: "user" },
+        { text: answer, sender: "bot" },
       ]);
     } catch (error) {
-      console.error('Error fetching data: ', error);
+      console.error("Error fetching data: ", error);
     }
-    e.target.elements.question.value = '';
+    e.target.elements.question.value = "";
   };
 
   return (
@@ -36,20 +39,20 @@ const ChatForm = () => {
       <div className="w-full max-w-md">
         <div
           className="p-4 space-y-2 overflow-y-auto"
-          style={{ maxHeight: 'calc(100vh - 200px)' }}
+          style={{ maxHeight: "calc(100vh - 200px)" }}
         >
           {messages.map((message, index) => (
             <div
               key={index}
               className={`${
-                message.sender === 'bot' ? 'text-left' : 'text-right'
+                message.sender === "bot" ? "text-left" : "text-right"
               }`}
             >
               <div
                 className={`${
-                  message.sender === 'bot'
-                    ? 'bg-gray-200 text-black'
-                    : 'bg-indigo-500 text-white'
+                  message.sender === "bot"
+                    ? "bg-gray-200 text-black"
+                    : "bg-indigo-500 text-white"
                 } py-2 px-3 rounded-md inline-block max-w-md break-words`}
               >
                 {message.text}

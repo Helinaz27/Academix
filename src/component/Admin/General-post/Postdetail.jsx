@@ -24,6 +24,7 @@ function Postdetail({
 }) {
   const Token = useSelector(selectCurrentToken);
   const [post, setPost] = useState(null);
+  const [commentInput, setCommentInput] = useState("");
   useEffect(() => {
     const fetchPostDetails = async () => {
       try {
@@ -59,6 +60,43 @@ function Postdetail({
     fetchPostDetails(); // Call the function to fetch post details and comments
   }, [postId, Token]);
   console.log("Post details bottom:", post);
+
+  const handleCommentSubmit = async () => {
+    try {
+      const response = await fetch(
+        `http://54.237.124.13:8000/postapi/posts/${postId}/comments`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${Token}`,
+          },
+          body: JSON.stringify({ content: commentInput }),
+        }
+      );
+      if (response.ok) {
+        // Optionally, you can update the UI to reflect the new comment
+        // Fetch the post details again to get the updated comment count
+        alert("Comment added successfully");
+        // const response = await fetch(
+        //   `http://54.237.124.13:8000/postapi/posts/1/comments`,
+        //   {
+        //     headers: {
+        //       Authorization: `Token ${Token}`,
+        //     },
+        //   }
+        // );
+        // const postData = await response.json();
+        // setPost(postData); // Set fetched post data to state
+
+        setCommentInput(""); // Clear the comment input after submission
+      } else {
+        // Handle error response if needed
+      }
+    } catch (error) {
+      // Handle fetch error
+    }
+  };
 
   return (
     <Dialog size="xl" open={open} handler={handleOpen} className="w-full">
@@ -121,40 +159,36 @@ function Postdetail({
                 {post.post.content}
               </div>
             </Card>
-            <Card className="w-full">
-              <div className=" grid grid-cols-1 mt-1 overflow-y-scroll h-full">
+            <div className="w-full">
+              <div className="grid mt-1 h-96 overflow-y-scroll">
                 {post?.comments?.comment?.map((comment, index) => {
                   return (
                     <div
                       key={index}
-                      className="  items-start gap-4 py-2 pl-2 pr-8"
+                      className="grid grid-cols items-start gap-1 py-2 pl-2 pr-4"
                     >
-                      <div class="max-w-lg mx-auto border px-6 py-4 rounded-lg">
-                        <div class="flex items-center mb-6">
-                          <img src="https://randomuser.me/api/portraits/men/97.jpg" alt="Avatar" class="w-12 h-12 rounded-full mr-4">
-                            <div>
-                              <div class="text-lg font-medium text-gray-800">John Doe</div>
-                              <div class="text-gray-500">2 hours ago</div>
-                            </div>
-                          </></div>
-                        <p class="text-lg leading-relaxed mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lorem
-                          nulla. Donec consequat urna a tortor sagittis lobortis.</p>
-                        <div class="flex justify-between items-center">
-                          <div>
-                            <a href="#" class="text-gray-500 hover:text-gray-700 mr-4"><i class="far fa-thumbs-up"></i> Like</a>
-                            <a href="#" class="text-gray-500 hover:text-gray-700"><i class="far fa-comment-alt"></i> Reply</a>
+                      <div className="space-y-4 overflow-y-auto">
+                        <div className="flex">
+                          <div className="flex-shrink-0 mr-3">
+                            {/* Add user avatar or icon here */}
                           </div>
-                          <div class="flex items-center">
-                            <a href="#" class="text-gray-500 hover:text-gray-700 mr-4"><i class="far fa-flag"></i> Report</a>
-                            <a href="#" class="text-gray-500 hover:text-gray-700"><i class="far fa-share-square"></i> Share</a>
+                          <div className="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
+                            <strong>Sarah</strong>
+                            <span className="text-xs text-gray-400">Time</span>
+                            <p className="text-sm">{comment.content}</p>
+                            <div className="mt-4 flex items-center">
+                              <div className="flex -space-x-2 mr-2">
+                                {/* Add actions or buttons here */}
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-
                   );
                 })}
               </div>
+
               <div className="flex w-full flex-row items-center gap-2 border border-gray-900/10 bg-gray-900/5 p-2 mt-1 ">
                 <div className="flex">
                   <IconButton variant="text" className="rounded-full">
@@ -177,13 +211,21 @@ function Postdetail({
                 <Textarea
                   rows={1}
                   resize={true}
-                  placeholder="Your Comment"
+                  value={commentInput}
+                  onChange={(e) => setCommentInput(e.target.value)}
+                  placeholder=" Comment"
                   className="min-h-full !border-0 focus:border-transparent"
                   containerProps={{
                     className: "grid h-full",
                   }}
                   labelProps={{
                     className: "before:content-none after:content-none",
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      handleCommentSubmit();
+                    }
                   }}
                 />
                 <div>
@@ -205,7 +247,7 @@ function Postdetail({
                   </IconButton>
                 </div>
               </div>
-            </Card>
+            </div>
           </DialogBody>
           <DialogFooter className="justify-between">
             <div className="flex items-center gap-16">

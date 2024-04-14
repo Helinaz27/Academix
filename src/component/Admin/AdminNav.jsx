@@ -123,7 +123,7 @@ const AdminNav = () => {
                   !open && "hidden"
                 } origin-left duration-200 font-sans font-bold`}
               >
-                Event
+                Request
               </span>
             </li>
             <li className="flex absolute bottom-0 mb-5 rounded-md p-2 cursor-pointer hover:bg-white hover:text-neutral-800 font-semibold leading-3  text-[#AFAFAF] text-sm items-center">

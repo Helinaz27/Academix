@@ -1,61 +1,53 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentToken } from "../../../Features/auth/authSlice";
+import ClupDetial from "./ClupDetial";
 import {
   Card,
   CardBody,
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
-import Courcetable from "./Courcetable";
-import AdminNav from "../AdminNav";
 
-function Departmentcard() {
-  const [departments, setDepartments] = useState([]);
-  const [open, setOpen] = React.useState(false);
-  const [isFavorite, setIsFavorite] = React.useState(false);
-  const [selectedDepartmentId, setSelectedDepartmentId] = useState(null);
-  const courcetableRef = useRef(null); // Create a ref for Courcetable
-
-  const handleOpen = (departmentId) => {
-    setSelectedDepartmentId(departmentId);
-    setOpen(true);
-  };
-  const Token = useSelector(selectCurrentToken);
-  const handleIsFavorite = () => setIsFavorite((cur) => !cur);
+function ClubCard() {
+  const [clubs, setClubs] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [selectedClubId, setSelectedClubId] = useState(null);
+  const clubTableRef = useRef(null); // Create a ref for ClubTable
+  const token = useSelector(selectCurrentToken);
 
   useEffect(() => {
-    const fetchDepartments = async () => {
+    const fetchClubs = async () => {
       try {
         const response = await fetch(
-          "http://54.237.124.13:8000/basicapp/departments",
+          "http://54.237.124.13:8000/community/club/",
           {
             headers: {
-              Authorization: `Token ${Token}`,
+              Authorization: `Token ${token}`,
             },
           }
         );
         if (response.ok) {
           const data = await response.json();
-          setDepartments(data.department);
+          setClubs(data.clubs);
         } else {
-          throw new Error("Failed to fetch departments");
+          throw new Error("Failed to fetch clubs");
         }
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchDepartments();
-  }, []);
+    fetchClubs();
+  }, [token]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        courcetableRef.current &&
-        !courcetableRef.current.contains(event.target)
+        clubTableRef.current &&
+        !clubTableRef.current.contains(event.target)
       ) {
-        setOpen(false); // Close Courcetable
+        setOpen(false); // Close ClubTable
       }
     };
 
@@ -65,38 +57,46 @@ function Departmentcard() {
     };
   }, []);
 
+  const handleOpenClub = (clubId) => {
+    setSelectedClubId(clubId);
+    setOpen(false);
+  };
+  const [openA, setOpenA] = React.useState(false);
+  const handleOpenA = () => setOpenA(!openA);
+
   return (
     <>
+    <ClupDetial openA={openA} handleOpenA={handleOpenA} />
       <div className="flex w-full">
-        <div className="grid grid-cols-3 gap-10 mt-5 h-full">
+        <div className="grid grid-cols-3 gap-10 mt-5 h-full" ref={clubTableRef}>
           {open && (
-            <div ref={courcetableRef}>
-              <Courcetable
-                departmentId={selectedDepartmentId}
-                handleOpen={handleOpen}
-                open={open}
+            <div ref={clubTableRef}>
+              <ClubTable
+                clubId={selectedClubId}
+                handleOpenA={handleOpenA}
+                openA={openA}
               />
             </div>
           )}
-          {departments.map((department) => (
+          {clubs.map((club) => (
             <Card
-              key={department.id}
+              key={club.id}
               className="ml-3 mt-3 w-80 cursor-pointer"
-              onClick={() => handleOpen(department.id)}
+              onClick={() => handleOpenA(club.id)}
             >
               <CardBody>
                 <Typography variant="h5" color="blue-gray" className="mb-2">
-                  {department.name}
+                  {club.name}
                 </Typography>
                 <div className=" w-full h-56 rounded-lg overflow-auto">
                   <Typography className="object-cover object-center w-full h-full aspect-h-1">
-                    {department.overview}
+                    {club.overview}
                   </Typography>
                 </div>
               </CardBody>
               <CardFooter className="pt-0">
                 <Typography>
-                  {department.head ? department.head : "Department Head"}
+                  {/* {club.head ? club.head : "Club Head"} */}
                 </Typography>
               </CardFooter>
             </Card>
@@ -107,4 +107,4 @@ function Departmentcard() {
   );
 }
 
-export default Departmentcard;
+export default ClubCard;

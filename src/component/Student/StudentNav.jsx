@@ -61,19 +61,6 @@ const StudentNav = () => {
             </li>
             <li
               className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
-              onClick={() => Navigate("/Stcources")}
-            >
-              <AcademicCapIcon class="h-6 w-6 text-[#AFAFAF]" />
-              <span
-                className={`${
-                  !open && "hidden"
-                } origin-left duration-200 font-sans font-bold`}
-              >
-                Cources
-              </span>
-            </li>
-            <li
-              className="flex  rounded-md p-2 cursor-pointer hover:bg-white hover:text-black text-[#AFAFAF] text-sm items-center focus:bg-white"
               onClick={() => Navigate("/Club")}
             >
               <HashtagIcon class="h-6 w-6 text-[#AFAFAF]" />

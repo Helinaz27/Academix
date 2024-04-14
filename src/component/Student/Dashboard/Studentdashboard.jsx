@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import PostService from "./PostService.js";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../Features/auth/authSlice.js";
+
 // import { IoMdTime } from "react-icons/fi";
 import TrendingPosts from "./TrendingPosts.jsx";
 import Sidebar from "./Sidebar.jsx";
 import allCourses from "./AllCourses.json";
 import courseData from "./Courses.json"; // Import the course data from a dummy JSON file
 import tw from "tailwind-styled-components";
+import { useSelect } from "@material-tailwind/react";
 
 const StudentDashboard = () => {
   const [posts, setPosts] = useState([]);
@@ -37,14 +41,16 @@ const StudentDashboard = () => {
   };
 
   const coursesToShow = showSemesterCourses ? courses : allCourses;
-
+  const user = useSelector(selectCurrentUser);
   return (
     <div className="bg-gray-200 pt-10 px-1 md:px-5 ">
       <div className="flex items-right mb-2 "></div>
       <div className="flex">
         <div className="flex-1 m-5 md-5 ">
           <div className="bg-white p-5 md:p-10 rounded-[20px] shadow-md mb-4 w-auto h-[200px] relative">
-            <p className="text-[20px] md:text-[32px] font-bold">Hi, Jhon</p>
+            <p className="text-[20px] md:text-[32px] font-bold">
+              Welcome {user.first_name}
+            </p>
             <p className="text-gray-600 text-[13px] md:text-[20px]">
               Welcome to your Dashboard
             </p>

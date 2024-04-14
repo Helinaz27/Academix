@@ -92,7 +92,7 @@ const SearchHeaderforUsers = () => {
         user={selectedUser}
         onClose={() => setSelectedUser(null)}
       />
-      <Card className="flex h-full w-full mt-5">
+      <Card className="flex">
         <CardHeader floated={false} shadow={false} className="rounded-none">
           <div className=" flex items-center justify-between ">
             <div>
@@ -100,28 +100,15 @@ const SearchHeaderforUsers = () => {
                 Staff List
               </Typography>
             </div>
-            <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-              <Button
-                className="flex items-center gap-3"
-                size="sm"
-                // onClick={handleOpen}
-              >
-                <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add Staff
-              </Button>
-            </div>
           </div>
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <div className="w-72 mb-32 mt-20">
-              <Select
-                label="Select Role"
-                animate={{
-                  mount: { y: 0 },
-                  unmount: { y: 25 },
-                }}
-              >
-                <Option>All</Option>
-                <Option>Representative</Option>
-                <Option>Student Union</Option>
+            <div className="w-72">
+              <Select label="Select Version" className="mt-">
+                <Option>Material Tailwind HTML</Option>
+                <Option>Material Tailwind React</Option>
+                <Option>Material Tailwind Vue</Option>
+                <Option>Material Tailwind Angular</Option>
+                <Option>Material Tailwind Svelte</Option>
               </Select>
             </div>
             <div className="w-full md:w-72 mb-10">
@@ -135,7 +122,7 @@ const SearchHeaderforUsers = () => {
           </div>
         </CardHeader>
         <CardBody className="overflow-scroll px-0 ml-3">
-          <table className="mt-4 w-full min-w-max table-auto text-left">
+          <table className="w-full min-w-max table-auto text-left">
             <thead>
               <tr>
                 <th className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
@@ -239,7 +226,10 @@ const SearchHeaderforUsers = () => {
                   </td>
                   <td className="border-b border-blue-gray-50 p-4">
                     <Tooltip content="View">
-                      <IconButton onClick={() => handleView(student)}>
+                      <IconButton
+                        className="mr-2"
+                        onClick={() => handleView(student)}
+                      >
                         <EyeIcon className="h-4 w-4" />
                       </IconButton>
                     </Tooltip>

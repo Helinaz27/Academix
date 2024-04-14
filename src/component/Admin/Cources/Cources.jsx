@@ -1,26 +1,25 @@
 import React from "react";
-import Posts from "./Posts";
-import StudentNav from "../../StudentNav";
-import StudenthNav from "../../StudenthNav";
+import AdminNav from "../AdminNav";
+import AdminhNav from "../AdminhNav";
+import CourcesCard from "./CourcesCard";
 
-const Gpost = () => {
+const Cources = () => {
   return (
     <>
       <div className="flex bg-white h-screen overflow-hidden">
-        <StudentNav />
+        <AdminNav />
         <div className="w-full overflow-y-auto px-1 py-2">
           <div className="flex">
-            <StudenthNav />
+            <AdminhNav />
           </div>
           <div className="">
             <h2 className="text-xl font-bold "></h2>
           </div>
-
-          <Posts />
+          <CourcesCard />
         </div>
       </div>
     </>
   );
 };
 
-export default Gpost;
+export default Cources;

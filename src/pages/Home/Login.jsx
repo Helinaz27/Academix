@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setCredentials } from "../../Features/auth/authSlice";
@@ -33,11 +34,12 @@ export default function Login() {
       console.log("Staff Check", response?.data.is_staff);
       dispatch(setCredentials({ ...response?.data }));
       navigate("/Redirector");
+      toast.success("Sucess");
       // Handle successful login, e.g., redirect to dashboard
     } catch (error) {
-      console.error("Error logging in:", error.response.data);
-
-      // Handle login error, e.g., display error message to user
+      // Handle error
+      console.error("Check Your Username or Password:", error);
+      toast.error("Error Check Your Username or Password");
     }
   };
   return (

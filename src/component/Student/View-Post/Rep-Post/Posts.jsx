@@ -27,7 +27,7 @@ function Posts() {
   const fetchPosts = async () => {
     try {
       const response = await fetch(
-        "http://54.237.124.13:8000/postapi/general/posts",
+        "http://54.237.124.13:8000/postapi/section",
         {
           headers: {
             Authorization: `Token ${Token}`,

@@ -8,11 +8,18 @@ function Cards() {
   const Token = useSelector(selectCurrentToken);
 
   const [studentCounts, setStudentCounts] = useState({
-    first_year: 0,
-    second_year: 0,
-    third_year: 0,
-    forth_year: 0,
-    fifth_year: 0,
+    first_year: 1500,
+    second_year: 1500,
+    third_year: 1500,
+    forth_year: 1500,
+    fifth_year: 1500,
+  });
+  const [repCounts, setrepCounts] = useState({
+    first_year: 50,
+    second_year: 50,
+    third_year: 50,
+    forth_year: 50,
+    fifth_year: 50,
   });
 
   useEffect(() => {
@@ -36,85 +43,71 @@ function Cards() {
   }, []);
 
   return (
-    <>
-      <Card className=" mt-1 pr-3 grid grid-cols-5 md:grid-cols-5 sm:grid-cols-1  ">
-        <Card className="bg-[#C2D2F9] p-4 ml-3 rounded-[20px] shadow-sm overflow-hidden">
-          <CardBody>
-            <Typography
-              variant="h4"
-              color="blue-gray"
-              className="mb-2 text-center"
-            >
-              Freshman
-            </Typography>
-            <br />
-            <Typography variant="h5" color="blue-gray" className="">
-              {studentCounts.first_year}
-            </Typography>
-          </CardBody>
-        </Card>
-        <Card className="bg-[#C2D2F9] p-4 ml-3 rounded-[20px] shadow-sm overflow-hidden">
-          <CardBody>
-            <Typography
-              variant="h4"
-              color="blue-gray"
-              className="mb-2 text-center"
-            >
-              Second Year
-            </Typography>
-            <br />
-            <Typography variant="h5" color="blue-gray" className="">
-              {studentCounts.second_year}
-            </Typography>
-          </CardBody>
-        </Card>
-        <Card className="bg-[#C2D2F9] p-4 ml-3 rounded-[20px] shadow-sm overflow-hidden">
-          <CardBody>
-            <Typography
-              variant="h4"
-              color="blue-gray"
-              className="mb-2 text-center"
-            >
-              Third Year
-            </Typography>
-            <br />
-            <Typography variant="h5" color="blue-gray" className="">
-              {studentCounts.third_year}
-            </Typography>
-          </CardBody>
-        </Card>
-        <Card className="bg-[#C2D2F9] p-4 ml-3 rounded-[20px] shadow-sm overflow-hidden">
-          <CardBody>
-            <Typography
-              variant="h4"
-              color="blue-gray"
-              className="mb-2 text-center"
-            >
-              Fourth Year
-            </Typography>
-            <br />
-            <Typography variant="h5" color="blue-gray" className="">
-              {studentCounts.forth_year}
-            </Typography>
-          </CardBody>
-        </Card>
-        <Card className="bg-[#C2D2F9] p-4 ml-3 rounded-[20px] shadow-sm overflow-hidden">
-          <CardBody className=" font-extrabold">
-            <Typography
-              variant="h4"
-              color="blue-gray"
-              className="mb-2 text-center"
-            >
-              Fifth Year
-            </Typography>
-            <br />
-            <Typography variant="h5" color="blue-gray" className="">
-              {studentCounts.fifth_year}
-            </Typography>
-          </CardBody>
-        </Card>
-      </Card>
-    </>
+    <div className="flex flex-col">
+      <div className="p-5 flex justify-between">
+        <p className="text-[20px] font-extrabold">Dashboard</p>
+        <div className="pt-2 px-4 bg-gray-200 text-[11px] justify-center items-center rounded-full">
+          <p>Over All</p>
+        </div>
+      </div>
+      <div className="w-ful h-[250px] flex gap-10 p-5">
+        <div className="w-full gird grid-cols-1  bg-[#C2D2F9] border-solid border-2 rounded-[20px] px-5 pt-24">
+          <p className="text-[14px] font-extrabold text-gray-700">
+            Freshman Students
+          </p>
+          <p className="text-[30px] font-extrabold">
+            {studentCounts.first_year}
+          </p>
+          <p className="text-[11px] font-extrabold">
+            Reps: {repCounts.first_year}
+          </p>
+        </div>
+        <div className="w-full gird grid-cols-1  bg-[#C2D2F9] border-solid border-2 rounded-[20px] px-5 pt-24">
+          <p className="text-[14px] font-extrabold text-gray-700">
+            Second Year Students
+          </p>
+          <p className="text-[30px] font-extrabold">
+            {studentCounts.second_year}
+          </p>
+          <p className="text-[11px] font-extrabold">
+            Reps: {repCounts.second_year}
+          </p>
+        </div>
+        <div className="w-full gird grid-cols-1  bg-[#C2D2F9] border-solid border-2 rounded-[20px] px-5 pt-24">
+          <p className="text-[14px] font-extrabold text-gray-700">
+            Third Year Students
+          </p>
+          <p className="text-[30px] font-extrabold">
+            {studentCounts.third_year}
+          </p>
+          <p className="text-[11px] font-extrabold">
+            Reps: {repCounts.third_year}
+          </p>
+        </div>
+        <div className="w-full gird grid-cols-1  bg-[#C2D2F9] border-solid border-2 rounded-[20px] px-5 pt-24">
+          <p className="text-[14px] font-extrabold text-gray-700">
+            Fourth Year Students
+          </p>
+          <p className="text-[30px] font-extrabold">
+            {studentCounts.forth_year}
+          </p>
+          <p className="text-[11px] font-extrabold">
+            Reps: {repCounts.forth_year}
+          </p>
+        </div>
+        <div className="w-full gird grid-cols-1  bg-[#C2D2F9] border-solid border-2 rounded-[20px] px-5 pt-24">
+          <p className="text-[14px] font-extrabold text-gray-700">
+            Graduating Students
+          </p>
+          <p className="text-[30px] font-extrabold">
+            {studentCounts.fifth_year}
+          </p>
+          <p className="text-[11px] font-extrabold">
+            Reps: {repCounts.fifth_year}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 

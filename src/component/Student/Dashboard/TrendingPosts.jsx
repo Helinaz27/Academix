@@ -74,11 +74,13 @@ const TrendingPosts = () => {
             Trending Posts
           </Typography>
         </div>
-        <div className="grid gap-2 grid-cols-3 sm:grid-cols-3 md:grid-cols-3 h-full overflow-y-scroll">
-          {trendingPosts.map((post) => (
+        <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 h-full overflow-y-scroll">
+          {trendingPosts.map((post, index) => (
             <div
               key={post.id}
-              className="p-4 mb-2 h-[300px] md:h-[250px] w-[150px] md:w-[300px] overflow-hidden"
+              className={`flex flex-col p-3 overflow-y-auto ${
+                index >= 3 ? "hidden" : ""
+              }`}
               onMouseOver={() => handlePopoverOpen(post.id)}
               onMouseLeave={handlePopoverClose}
             >
@@ -87,14 +89,14 @@ const TrendingPosts = () => {
                   <img
                     src={`http://54.237.124.13:8000${post.file}`}
                     alt={`Trending Post ${post.id}`}
-                    className="max-w-sm max-h-sm object-cover rounded-[20px] shadow-sm"
+                    className="h-40 w-full max-w-full rounded-lg object-cover object-center"
                   />
                 </PopoverHandler>
                 {hoveredPost === post.id && (
-                  <PopoverContent className=" max-w-sm max-h-sm mt-15">
-                    <div className="max-h-sm max-w-sm">
-                      <div floated={false} color="" className="bg-white">
-                        <div className="flex items-center gap-2 mt-3 ml-2 mb-2">
+                  <PopoverContent className=" max-w-sm max-h-sm">
+                    <div className=" h-64 rounded-l shadow-md">
+                      <div floated={false} color="" className="">
+                        <div className="flex items-center">
                           <IconButton className="rounded-full">
                             <UserIcon className="h-6 w-6 text-white" />
                           </IconButton>
@@ -112,7 +114,7 @@ const TrendingPosts = () => {
                       </div>
                       <img
                         src={`http://54.237.124.13:8000${post.file}`}
-                        className="object-cover object-center w-auto rounded-lg h-auto"
+                        className="object-cover object-center w-auto h-full aspect-square"
                         alt={`Trending Post ${post.id}`}
                       />
                       <div className="block mt-5 font-sans text-sm antialiased font-normal leading-normal text-center text-inherit">
@@ -152,12 +154,6 @@ const TrendingPosts = () => {
                           >
                             <ExclamationCircleIcon className="h-6 w-6 float-left" />
                           </IconButton>
-                        </div>
-                        <div className="ml-2 block mt-0 font-sans text-sm antialiased font-bold leading-normal text-left">
-                          {post.likes}
-                        </div>
-                        <div className="ml-2 block mt-0 font-sans text-sm antialiased font-bold leading-normal text-left truncate line-clamp-2">
-                          {post.content}
                         </div>
                       </div>
                     </div>

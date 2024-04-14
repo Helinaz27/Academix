@@ -20,6 +20,7 @@ import Admin_General_post from "./component/Admin/General-post/Gpost.jsx";
 import Staff from "./component/Admin/Staff/Staff";
 import StudentList from "./component/Admin/users/User.jsx";
 import AdminEvent from "./component/Admin/Event/Events";
+import AdminCources from "./component/Admin/Cources/Cources.jsx";
 // Imported Student Routes
 import StudentDashboard from "./component/Student/Dashboard/Home";
 import Event_Post from "./component/Student/View-Post/Event-post/Gpost";
@@ -70,6 +71,7 @@ function App() {
         <Route path="Section" element={<Student_Section />} />
         <Route path="Stcources" element={<StudentCources />} />
         <Route path="Profile" element={<StudentProfile />} />
+        <Route path="AdminCources" element={<AdminCources />} />
         <Route path="StudentEditProfile" element={<EditProfile />} />
       </Routes>
       {/* <footer className="">

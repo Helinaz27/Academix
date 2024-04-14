@@ -82,7 +82,7 @@ function Events() {
             "Content-Type": "application/json", // Corrected content-type header
           },
           data: {
-            status: 1, // Sending status in the request body
+            status: "A", // Sending status in the request body
           },
         }
       );
@@ -133,7 +133,7 @@ function Events() {
             "Content-Type": "application/json", // Corrected content-type header
           },
           data: {
-            status: 0, // Sending status in the request body
+            status: "D", // Sending status in the request body
           },
         }
       );
@@ -194,7 +194,7 @@ function Events() {
         </tbody>
       </table>
       <div>
-        <h2 className="text-xl font-bold mb-4">Club Requests</h2>
+        <h2 className="text-xl font-bold mb-4">Request</h2>
         <table className="w-full border-collapse border border-gray-300 mb-8">
           <thead className="bg-gray-100">
             <tr>

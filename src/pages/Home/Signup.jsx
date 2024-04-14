@@ -11,10 +11,15 @@ const SignUp = () => {
     email: "",
     student_id: "",
     academic_year: "",
+    telegram: "",
+    instagram: "",
+    linkedin: "",
     password: "",
-    department_id: "", // Add department_id to store the selected department ID
+
+    department: 1,// Add department_id to store the selected department ID
     gender: "", // Add gender field
-  });
+    section: "",
+  })
   const [departmentOptions, setDepartmentOptions] = useState([]); // State variable to store department options
 
   // Function to fetch department options from the API
@@ -51,8 +56,10 @@ const SignUp = () => {
       );
       console.log("User created:", response.data);
       // Optionally, you can redirect the user or show a success message
+      alert("User created successfully!");
     } catch (error) {
       console.error("Error creating user:", error);
+      alert("An error occurred. Please try again.");
       // Optionally, you can show an error message to the user
     }
   };
@@ -106,10 +113,31 @@ const SignUp = () => {
             onChange={handleInputChange}
           />
           <input
-            type="integer"
+            type="number"
             className="w-full px-4 py-3 border border-gray-300 rounded"
             name="academic_year"
             placeholder="Academic Year"
+            onChange={handleInputChange}
+          />
+          <input
+            type="text"
+            className="w-full px-4 py-3 border border-gray-300 rounded"
+            name="telegram"
+            placeholder="@telegExample"
+            onChange={handleInputChange}
+          />
+          <input
+            type="text"
+            className="w-full px-4 py-3 border border-gray-300 rounded"
+            name="instagram"
+            placeholder="@instExample"
+            onChange={handleInputChange}
+          />
+          <input
+            type="text"
+            className="w-full px-4 py-3 border border-gray-300 rounded"
+            name="linkedin"
+            placeholder="linkedin_Example"
             onChange={handleInputChange}
           />
           <input
@@ -119,32 +147,35 @@ const SignUp = () => {
             placeholder="Password"
             onChange={handleInputChange}
           />
-          {/* Gender dropdown */}
+          {/* section driodown */}
           <select
             className="w-full px-4 py-3 border border-gray-300 rounded"
-            name="gender"
+            name="section"
             onChange={handleInputChange}
-            value={formData.gender}
+            value={formData.section}
           >
-            <option value="">Select Gender</option>
-            <option value="f">Female</option>
-            <option value="m">Male</option>
+            <option value="">Select section</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
           </select>
+          
+  
           {/* Department dropdown */}
           <div className="relative">
-            <select
-              className="w-full px-4 py-3 border border-gray-300 rounded"
-              name="department_id"
-              onChange={handleInputChange}
-              value={formData.department_id}
-            >
-              <option value="">Select Department</option>
-              {departmentOptions.map((department) => (
-                <option key={department.id} value={department.id}>
-                  {department.name}
-                </option>
-              ))}
-            </select>
+          <select
+  className="w-full px-4 py-3 border border-gray-300 rounded"
+  name="department"
+  onChange={handleInputChange}
+  value={formData.department}
+>
+  <option value="">Select Department</option>
+  {departmentOptions.map((department) => (
+    <option key={department.id} value={department.id}>
+      {department.name}
+    </option>
+  ))}
+</select>
+
             <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
               <svg
                 className="w-5 h-5 text-gray-400"
@@ -165,6 +196,18 @@ const SignUp = () => {
               </svg>
             </div>
           </div>
+          {/* Gender dropdown */}
+          <select
+            className="w-full px-4 py-3 border border-gray-300 rounded"
+            name="gender"
+            onChange={handleInputChange}
+            value={formData.gender}
+          >
+            <option value="">Select Gender</option>
+            <option value="f">Female</option>
+            <option value="m">Male</option>
+          </select>
+
           {/* Submit button */}
           <button
             type="submit"

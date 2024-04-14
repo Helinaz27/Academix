@@ -89,7 +89,7 @@ const ProgressCircle = () => {
         <svg width={200} height={200}>
           <g transform={`rotate(-90 100 100)`}>
             <CircleProgress color="blue" percentage={femalePct} />
-            <CircleProgress color="red" percentage={malePct} />
+            <CircleProgress color="green" percentage={malePct} />
           </g>
           <PercentageText
             percentage={femalePct}
@@ -108,7 +108,7 @@ const ProgressCircle = () => {
         <p>{maleCount}</p>
       </div>
       <div className="flex gap-4">
-        <FaCircle className="fill-light-blue-900 mb-1" />
+        <FaCircle className="fill-red-800 mb-1" />
 
         <h3>females</h3>
         <p>{femaleCount}</p>
